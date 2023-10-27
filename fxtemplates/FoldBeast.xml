@@ -87,7 +87,7 @@ bmodeltest.math.distributions.NucleotideRevJumpSubstModelRatePrior.distr"
         </log>
             
         <operator id="FoldBeast_FrequenciesAVMNOperator.s:$(n)" spec="beast.base.evolution.operator.kernel.AdaptableVarianceMultivariateNormalOperator" beta="0.05" burnin="500" initial="1000" weight="1.0">
-        	<transformations id="LogConstrainedSumTransform.s:$(n)" spec="beast.base.inference.operator.kernel.Transform$LogConstrainedSumTransform">
+        	<transformations id="FoldBeast_LogConstrainedSumTransform.s:$(n)" spec="beast.base.inference.operator.kernel.Transform$LogConstrainedSumTransform">
             	<f idref="FoldBeast_frequencies.s:$(n)"/>
 	        </transformations>
     	</operator>

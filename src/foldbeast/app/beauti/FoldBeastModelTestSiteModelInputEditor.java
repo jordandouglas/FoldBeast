@@ -49,7 +49,7 @@ public class FoldBeastModelTestSiteModelInputEditor extends SiteModelInputEditor
 
 	@Override
 	public void init(Input<?> input, BEASTInterface plugin, int itemNr, ExpandOption bExpandOption, boolean bAddButtons) {
-		System.out.println("ZZZZZZZZZZZZZZZZZZZ");
+		//System.out.println("ZZZZZZZZZZZZZZZZZZZ");
 		super.init(input, plugin, itemNr, bExpandOption, bAddButtons);
 		
 		

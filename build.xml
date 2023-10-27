@@ -187,11 +187,11 @@
 		<copy todir="${package_dir}">
 			<fileset dir="${distFoldBeast}" includes="FoldBeast.src.jar" />
 		</copy>
-		<!-->
+		
 		<copy todir="${package_dir}/fxtemplates">
 			<fileset file="fxtemplates/FoldBeast.xml" />
 		</copy>
-		-->
+		
 		<jar jarfile="${distFoldBeast}/FoldBeast.package.v${FoldBeastversion}.zip">
 			<fileset dir="${package_dir}">
 				<include name="**/*" />

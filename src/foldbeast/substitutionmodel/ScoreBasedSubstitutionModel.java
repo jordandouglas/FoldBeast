@@ -14,6 +14,8 @@ abstract public class ScoreBasedSubstitutionModel extends GeneralSubstitutionMod
 	
 	public ScoreBasedSubstitutionModel() {
 		ratesInput.setRule(Validate.OPTIONAL);
+		frequenciesInput.setRule(Validate.OPTIONAL);
+		
 	}
 
 	double [] Q;
@@ -42,7 +44,15 @@ abstract public class ScoreBasedSubstitutionModel extends GeneralSubstitutionMod
 	
 	public double[] setUpQMatrix() {
 		int [][]scores = getScores();
-		double [] freqs = getFrequencies();
+		double [] freqs = null; 
+		if (frequencies == null){
+			freqs = new double[nrOfStates];
+			for (int i = 0; i < freqs.length; i ++) {
+				freqs[i] = 1.0 / nrOfStates;
+			}
+		}else {
+			freqs = getFrequencies();
+		}
 		
 		// normalise to log probs
 		// PMatrix[i][j] = exp(score[i][j])/(f[i] f[j])

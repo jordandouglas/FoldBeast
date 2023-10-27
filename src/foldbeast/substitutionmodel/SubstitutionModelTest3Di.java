@@ -82,7 +82,7 @@ public class SubstitutionModelTest3Di extends GeneralSubstitutionModel {
 
 	@Override
 	public double[] getFrequencies() {
-		if (useExternalFreqs.getValue()) {
+		if (true || useExternalFreqs.getValue()) {
 			return super.getFrequencies();
 		}
 		ScoreBasedSubstitutionModel model = models.get(modelIndicator.getValue());
