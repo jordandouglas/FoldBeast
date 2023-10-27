@@ -1,0 +1,6 @@
+/bin/
+/build/
+/release/
+.project
+.classpath
+

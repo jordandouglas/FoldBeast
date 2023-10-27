@@ -1,0 +1,228 @@
+<!-- Build FoldBeast. It is also used by Hudson FoldBeast project. JUnit test is available for this build. -->
+<project basedir="." default="addon" name="BUILD_FoldBeast">
+	<description>
+	    Build FoldBeast. 
+            Also used by Hudson FoldBeast project. 
+	    JUnit test is available for this build.
+	    $Id: build_FoldBeast.xml $
+	</description>
+
+	<!-- set global properties for this build -->
+	<property name="srcFoldBeast" location="src" />
+	<property name="buildFoldBeast" location="build" />
+	<property name="libFoldBeast" location="lib" />
+	<property name="release_dir" value="release" />
+	<property name="distFoldBeast" location="${buildFoldBeast}/dist" />
+	<property name="BEASTLabsclasspath" location="../BEASTLabs/build" />
+	<property name="bModelTestClassPath" location="../bModelTest/build" />
+	<property name="beast2path" location="../beast2" />
+	<property name="beastapppath" location="../BeastFX" />
+	<property name="libBeast2" location="${beast2path}/lib" />
+	<property name="srcBeast2" location="${beast2path}/src" />
+	<property name="beast2classpath" location="${beast2path}/build" />
+	<property name="Add_on_dir" value="${release_dir}/add-on" />
+    <property name="FoldBeastdir" value="."/>
+    <property name="beastapp2path" location="../BeastFX" />
+    <property name="beastapp2classpath" location="${beastapp2path}/build" />
+    <import file="${beast2path}/build.xml" />
+        
+	<property name="main_class_BEAST" value="beast.app.BeastMCMC" />
+	<property name="report" value="${buildFoldBeast}/junitreport"/>
+
+	<path id="classpath">
+        <pathelement path="${buildFoldBeast}"/>
+	<fileset dir="${libBeast2}" includes="antlr-runtime-4.7.jar"/>	
+	<fileset dir="${libBeast2}" includes="junit-4.8.2.jar"/>
+	<fileset dir="${libBeast2}" includes="fest.jar"/>
+        <fileset dir="${libBeast2}" includes="beagle.jar"/>
+        <fileset dir="${libBeast2}" includes="jam.jar"/>
+        <fileset dir="${libBeast2}" includes="colt.jar"/>
+        <pathelement path="${beast2classpath}"/>
+        <pathelement path="${beastapp2classpath}"/>
+        <pathelement path="${BEASTLabsclasspath}"/>
+        <pathelement path="${bModelTestClassPath}"/>
+	</path>
+
+	<!-- start -->
+
+
+	<target name="initFoldBeast">
+		<echo message="${ant.project.name}: ${ant.file}" />
+
+           <available file="${FoldBeastdir}/version.xml" property="versionAvailable"/>
+        <fail unless="versionAvailable">
+              ** Required file version.xml does not exist. **
+            </fail>
+
+        <!-- Read package name and version from xml file -->
+            <xmlproperty file="${FoldBeastdir}/version.xml" prefix="fromVersionFile" />
+        <property name="FoldBeastversion" value="${fromVersionFile.package(version)}" />
+	</target>
+
+	<target name="cleanFoldBeast">
+    	<delete dir="${buildFoldBeast}" />
+	</target>
+
+	<!-- clean previous build, and then compile Java source code, and Juint test -->
+	<target name="build_all_FoldBeast" depends="cleanFoldBeast,compile-allFoldBeast,junitFoldBeast"
+        description="Clean and Build all run-time stuff">
+	</target>
+
+	<!-- clean previous build, compile Java source code, and Junit test, and make the beast.jar and beauti.jar -->
+	<target name="build_jar_all_FoldBeast" depends="cleanFoldBeast,compile-allFoldBeast,junitFoldBeast,dist_all_FoldBeast"
+        description="Clean and Build all run-time stuff">
+	</target>
+
+
+	<!-- No JUnit Test, clean previous build, compile Java source code, and make the FoldBeast.jar and beauti.jar -->
+	<target name="build_jar_all_FoldBeast_NoJUnitTest" depends="cleanFoldBeast,compile-allFoldBeast,dist_all_FoldBeast"
+        description="Clean and Build all run-time stuff">
+	</target>
+
+	<!-- compile Java source code -->
+	<target name="compile-allFoldBeast" depends="initFoldBeast,compile-all">
+
+
+	    <!-- Capture the path as a delimited property using the refid attribute -->
+	    <property name="myclasspath" refid="classpath"/>
+	    <!-- Emit the property to the ant console -->
+	    <echo message="Classpath = ${myclasspath}"/>
+
+		<mkdir dir="${buildFoldBeast}" />
+
+		<!-- Compile the java code from ${srcFoldBeast} into ${buildFoldBeast} /bin -->
+		<javac target="1.8" srcdir="${srcFoldBeast}" destdir="${buildFoldBeast}" classpathref="classpath" 
+		       fork="true"
+		       memoryinitialsize="256m"
+		       memorymaximumsize="256m">
+			<include name="beast/**/**" />
+			<include name="FoldBeast/**/**" />
+			<!-- compile JUnit test classes -->
+			<include name="test/beast/**" />
+		</javac>
+        <copy todir="${buildFoldBeast}">
+            <fileset dir="${srcFoldBeast}" includes="**/*.properties" />
+            <fileset dir="${srcFoldBeast}" includes="**/*.png" />
+        </copy>
+		<echo message="Successfully compiled." />
+	</target>
+
+	<!-- make the beast.jar and beauti.jar -->
+	<target name="dist_all_FoldBeast" depends="compile-allFoldBeast" description="create FoldBeast jar">
+		<!-- Create the distribution directory -->
+		<mkdir dir="${distFoldBeast}" />
+
+		<!-- Put everything in ${buildFoldBeast} into the beast.jar file -->
+		<jar jarfile="${distFoldBeast}/FoldBeast.jar">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Main-Class" value="${main_class_BEAST}" />
+			</manifest>
+			<fileset dir="${buildFoldBeast}">
+				<include name="**/*.class" />
+			</fileset>
+			<fileset dir="${BEASTLabsclasspath}">
+				<include name="**/*.class"/>
+			</fileset>
+			<fileset dir="${beast2classpath}">
+				<include name="**/*.class" />
+				<include name="**/*.properties" />
+				<include name="**/*.png" />
+				<include name="**/*.class" />
+				<include name="**/*.class" />
+			</fileset>
+		</jar>
+		<jar jarfile="${distFoldBeast}/FoldBeast.src.jar">
+			<fileset dir="${srcFoldBeast}">
+				<include name="**/*.java" />
+				<include name="**/*.png" />
+				<include name="**/*.xsl" />
+			</fileset>
+        </jar>
+		<jar jarfile="${distFoldBeast}/FoldBeast.addon.jar">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+			</manifest>
+			<fileset dir="${buildFoldBeast}">
+				<include name="**/*.class" />
+				<include name="**/*.png" />
+				<include name="**/*.properties" />
+			</fileset>
+		</jar>
+	</target>
+
+	<!-- run beast.jar -->
+	<target name="run_FoldBeast">
+		<java jar="${distFoldBeast}/FoldBeast.jar" fork="true" />
+	</target>
+
+	
+	<!-- JUnit test -->
+	<target name="junitFoldBeast">
+		<mkdir dir="${report}" />
+		<junit printsummary="yes"> <!--showoutput='yes'-->
+			<classpath>
+				<path refid="classpath" />
+				<path location="${buildFoldBeast}" />
+			</classpath>
+
+			<formatter type="xml" />
+
+			<batchtest fork="yes" todir="${report}">
+				<fileset dir="${srcFoldBeast}">
+                    <include name="test/**/*Test.java"/>                                         
+				</fileset>
+				<fileset dir="${srcBeast2}">
+                    <include name="test/beast/integration/**/*Test.java"/>                                         
+                    <exclude name="test/beast/integration/**/ResumeTest.java"/>                                         
+				</fileset>
+			</batchtest>
+		</junit>
+		<echo message="JUnit test finished." />
+	</target>
+    
+    <target name="junitreport">
+		<junitreport todir="${report}">
+			<fileset dir="${report}" includes="*.xml"/>
+			<report format="frames" todir="${report}"/>
+		</junitreport>
+		<echo message="JUnit test report finished." />
+	</target>
+
+
+	<target name="addon"
+	        depends="build_jar_all_FoldBeast_NoJUnitTest"
+	        description="release BEAST 2 add-on version of FoldBeast">
+
+		<delete dir="${Add_on_dir}" />
+		<!-- Create the release directory -->
+		<mkdir dir="${Add_on_dir}" />
+		<mkdir dir="${Add_on_dir}/lib" />
+		<mkdir dir="${Add_on_dir}/examples" />
+		<mkdir dir="${Add_on_dir}/fxtemplates" />
+
+		<copy todir="${Add_on_dir}">
+			<fileset file="version.xml"/>
+		</copy>
+		<copy todir="${Add_on_dir}/examples">
+			<fileset dir="examples" />
+		</copy>
+		<copy todir="${Add_on_dir}/lib">
+			<fileset dir="${distFoldBeast}" includes="FoldBeast.addon.jar" />
+		</copy>
+		<copy todir="${Add_on_dir}">
+			<fileset dir="${distFoldBeast}" includes="FoldBeast.src.jar" />
+		</copy>
+		<copy todir="${Add_on_dir}/fxtemplates">
+			<fileset file="fxtemplates/FoldBeast.xml" />
+		</copy>
+
+		<jar jarfile="${distFoldBeast}/FoldBeast.addon.v${FoldBeastversion}.zip">
+			<fileset dir="${Add_on_dir}">
+				<include name="**/*" />
+			</fileset>
+        </jar>
+		<echo message="Add-on version v${FoldBeastversion} release is finished." />
+	</target>
+
+</project>
