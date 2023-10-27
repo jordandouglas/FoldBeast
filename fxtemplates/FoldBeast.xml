@@ -51,7 +51,7 @@ bmodeltest.math.distributions.NucleotideRevJumpSubstModelRatePrior.distr"
             </distr>
         </prior>
 
-	    <siteModel id="FoldBeast.:$(n)" spec="foldbeast.sitemodel.FoldBeastModelTestInputEditor" 
+	    <siteModel id="FoldBeast.s:$(n)" spec="foldbeast.sitemodel.FoldBeastModelTestSiteModel" 
 		    gammaCategoryCount="4" proportionInvariant="@FoldBeast_ProportionInvariable.s:$(n)" shape="@FoldBeast_gammaShape.s:$(n)"
 		    hasGammaRates="@FoldBeast_hasGammaRates.s:$(n)" hasInvariantSites="@FoldBeast_hasInvariableSites.s:$(n)">
 	        <parameter id="FoldBeast_mutationRate.s:$(n)" estimate="false" name="mutationRate">1.0</parameter>
