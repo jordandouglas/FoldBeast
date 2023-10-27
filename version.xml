@@ -19,6 +19,7 @@
          <provider classname="foldbeast.substitutionmodel.ScoreBasedSubstitutionModel"/>
          <provider classname="foldbeast.substitutionmodel.SubstitutionModelTest3Di"/>
          <provider classname="foldbeast.sitemodel.FoldBeastModelTestSiteModel"/>
+         <provider classname="foldbeast.app.beauti.FoldBeastModelTestSiteModelInputEditor"/>
 
 
     </service>

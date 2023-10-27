@@ -31,24 +31,27 @@ public class FoldBeastModelTestSiteModelInputEditor extends SiteModelInputEditor
     public Class<?> type() {
         return FoldBeastModelTestSiteModel.class;
     }
+	
+	public FoldBeastModelTestSiteModelInputEditor() {
+		
+	}
     
 	public FoldBeastModelTestSiteModelInputEditor(BeautiDoc doc) {
-		
+		//System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXX");
 		super(doc);
 		if (availableModels == null) {		
 			availableModels = new ArrayList<>();
 			availableModels.add(new NullModel());
 			availableModels.add(new FoldSeekSubstitutionMatrix());
 		}
-		//System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXX");
+		
 	}
 
 	@Override
 	public void init(Input<?> input, BEASTInterface plugin, int itemNr, ExpandOption bExpandOption, boolean bAddButtons) {
+		System.out.println("ZZZZZZZZZZZZZZZZZZZ");
 		super.init(input, plugin, itemNr, bExpandOption, bAddButtons);
 		
-		
-		//System.out.println("ZZZZZZZZZZZZZZZZZZZ");
 		
 		FoldBeastModelTestSiteModel siteModel = (FoldBeastModelTestSiteModel)input.get();
 		SubstitutionModel sm = siteModel.substModelInput.get();
