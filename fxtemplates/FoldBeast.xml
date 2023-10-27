@@ -95,12 +95,12 @@ bmodeltest.math.distributions.NucleotideRevJumpSubstModelRatePrior.distr"
 
             <connect method="beastfx.app.inputeditor.SiteModelInputEditor.customConnector"/>
 
-            <connect srcID='FoldBeast_ModelIndicator.s:$(n)'       targetID='state' inputName='stateNode' if='inlikelihood(FoldBeast.:$(n))'/>
-            <connect srcID='FoldBeast_gammaShape.s:$(n)'           targetID='state' inputName='stateNode' if='inlikelihood(FoldBeast.:$(n)) and FoldBeast_gammaShape.s:$(n)/estimate=true'/>
-            <connect srcID='FoldBeast_ProportionInvariable.s:$(n)'  targetID='state' inputName='stateNode' if='inlikelihood(FoldBeast.:$(n)) and FoldBeast_ProportionInvariable.s:$(n)/estimate=true'/>
-            <connect srcID='FoldBeast_hasInvariableSites.s:$(n)'        targetID='state' inputName='stateNode' if='inlikelihood(FoldBeast.:$(n)) and FoldBeast_hasInvariableSites.s:$(n)/estimate=true'/>
-            <connect srcID='FoldBeast_hasGammaRates.s:$(n)'            targetID='state' inputName='stateNode' if='inlikelihood(FoldBeast.:$(n)) and FoldBeast_hasGammaRates.s:$(n)/estimate=true'/>
-            <connect srcID='FoldBeast_useExternalFreqs.s:$(n)'            targetID='state' inputName='stateNode' if='inlikelihood(FoldBeast.:$(n))'/>
+            <connect srcID='FoldBeast_ModelIndicator.s:$(n)'       targetID='state' inputName='stateNode' if='inlikelihood(FoldBeast.s:$(n))'/>
+            <connect srcID='FoldBeast_gammaShape.s:$(n)'           targetID='state' inputName='stateNode' if='inlikelihood(FoldBeast.s:$(n)) and FoldBeast_gammaShape.s:$(n)/estimate=true'/>
+            <connect srcID='FoldBeast_ProportionInvariable.s:$(n)'  targetID='state' inputName='stateNode' if='inlikelihood(FoldBeast.s:$(n)) and FoldBeast_ProportionInvariable.s:$(n)/estimate=true'/>
+            <connect srcID='FoldBeast_hasInvariableSites.s:$(n)'        targetID='state' inputName='stateNode' if='inlikelihood(FoldBeast.s:$(n)) and FoldBeast_hasInvariableSites.s:$(n)/estimate=true'/>
+            <connect srcID='FoldBeast_hasGammaRates.s:$(n)'            targetID='state' inputName='stateNode' if='inlikelihood(FoldBeast.s:$(n)) and FoldBeast_hasGammaRates.s:$(n)/estimate=true'/>
+            <connect srcID='FoldBeast_useExternalFreqs.s:$(n)'            targetID='state' inputName='stateNode' if='inlikelihood(FoldBeast.s:$(n))'/>
 
             <connect srcID='FoldBeast_MutationRatePrior.s:$(n)'         targetID='prior' inputName='distribution' if='nooperator(FixMeanMutationRatesOperator) and inlikelihood(FoldBeast_mutationRate.s:$(n)) and FoldBeast_mutationRate.s:$(n)/estimate=true'/>
             <connect srcID='FoldBeast_mutationRate.s:$(n)'              targetID='state' inputName='stateNode' if='inlikelihood(FoldBeast_mutationRate.s:$(n)) and FoldBeast_mutationRate.s:$(n)/estimate=true'/>
@@ -112,24 +112,24 @@ bmodeltest.math.distributions.NucleotideRevJumpSubstModelRatePrior.distr"
             <connect srcID='FoldBeast_FrequenciesAVMNOperator.s:$(n)'   targetID='mcmc' inputName='operator' if='inlikelihood(FoldBeast_frequencies.s:$(n)) and FoldBeast_frequencies.s:$(n)/estimate=true'>AVMN proposal for frequencies of partition s:$(n)</connect>
             <connect srcID='FoldBeast_frequencies.s:$(n)'               targetID='tracelog' inputName='log' if='inlikelihood(FoldBeast_frequencies.s:$(n)) and FoldBeast_frequencies.s:$(n)/estimate=true'/>
             
-            <connect srcID='FoldBeast_GammaShapePrior.s:$(n)'           targetID='prior' inputName='distribution' if='inlikelihood(FoldBeast.:$(n)) and FoldBeast_gammaShape.s:$(n)/estimate=true'>Prior on gamma shape parameter for partition s:$(n)</connect>
-            <connect srcID='FoldBeast_PropInvariablePrior.s:$(n)'        targetID='prior' inputName='distribution' if='inlikelihood(FoldBeast.:$(n)) and FoldBeast_ProportionInvariable.s:$(n)/estimate=true'>Prior on proportion invariant for partition s:$(n)</connect>
+            <connect srcID='FoldBeast_GammaShapePrior.s:$(n)'           targetID='prior' inputName='distribution' if='inlikelihood(FoldBeast.s:$(n)) and FoldBeast_gammaShape.s:$(n)/estimate=true'>Prior on gamma shape parameter for partition s:$(n)</connect>
+            <connect srcID='FoldBeast_PropInvariablePrior.s:$(n)'        targetID='prior' inputName='distribution' if='inlikelihood(FoldBeast.s:$(n)) and FoldBeast_ProportionInvariable.s:$(n)/estimate=true'>Prior on proportion invariant for partition s:$(n)</connect>
 
-            <connect srcID='FoldBeast_gammaShapeScaler.s:$(n)'          targetID='mcmc' inputName='operator' if='inlikelihood(FoldBeast.:$(n)) and FoldBeast_gammaShape.s:$(n)/estimate=true'>Scales gamma shape parameter of partition s:$(n)</connect>
-            <connect srcID='FoldBeast_ProportionInvariableScaler.s:$(n)' targetID='mcmc' inputName='operator' if='inlikelihood(FoldBeast.:$(n)) and FoldBeast_ProportionInvariable.s:$(n)/estimate=true'>Scales proportion invariant of partition s:$(n)</connect>
-            <connect srcID='FoldBeast_hasGammaRatesFlipper.s:$(n)'      targetID='mcmc' inputName='operator' if='inlikelihood(FoldBeast.:$(n)) and FoldBeast_hasGammaRates.s:$(n)/estimate=true'>Switches gamma rates on/off of partition s:$(n)</connect>
-            <connect srcID='FoldBeast_hasInvariableSitesFlipper.s:$(n)'  targetID='mcmc' inputName='operator' if='inlikelihood(FoldBeast.:$(n)) and FoldBeast_hasInvariableSites.s:$(n)/estimate=true'>Switches invariant sites on/off of partition s:$(n)</connect>
-            <connect srcID='FoldBeast_FreqsFlipOperator.s:$(n)'         targetID='mcmc' inputName='operator' if='inlikelihood(FoldBeast.:$(n))'>Switches equal frequencies of partition s:$(n)</connect>
-	    	<connect srcID="FoldBeast_ModelIndicatorUniformOperator.s:$(n)" targetID='mcmc' inputName='operator' if='inlikelihood(FoldBeast.:$(n))'>Resersible jump of subst models for partition s:$(n)</connect>
+            <connect srcID='FoldBeast_gammaShapeScaler.s:$(n)'          targetID='mcmc' inputName='operator' if='inlikelihood(FoldBeast.s:$(n)) and FoldBeast_gammaShape.s:$(n)/estimate=true'>Scales gamma shape parameter of partition s:$(n)</connect>
+            <connect srcID='FoldBeast_ProportionInvariableScaler.s:$(n)' targetID='mcmc' inputName='operator' if='inlikelihood(FoldBeast.s:$(n)) and FoldBeast_ProportionInvariable.s:$(n)/estimate=true'>Scales proportion invariant of partition s:$(n)</connect>
+            <connect srcID='FoldBeast_hasGammaRatesFlipper.s:$(n)'      targetID='mcmc' inputName='operator' if='inlikelihood(FoldBeast.s:$(n)) and FoldBeast_hasGammaRates.s:$(n)/estimate=true'>Switches gamma rates on/off of partition s:$(n)</connect>
+            <connect srcID='FoldBeast_hasInvariableSitesFlipper.s:$(n)'  targetID='mcmc' inputName='operator' if='inlikelihood(FoldBeast.s:$(n)) and FoldBeast_hasInvariableSites.s:$(n)/estimate=true'>Switches invariant sites on/off of partition s:$(n)</connect>
+            <connect srcID='FoldBeast_FreqsFlipOperator.s:$(n)'         targetID='mcmc' inputName='operator' if='inlikelihood(FoldBeast.s:$(n))'>Switches equal frequencies of partition s:$(n)</connect>
+	    	<connect srcID="FoldBeast_ModelIndicatorUniformOperator.s:$(n)" targetID='mcmc' inputName='operator' if='inlikelihood(FoldBeast.s:$(n))'>Resersible jump of subst models for partition s:$(n)</connect>
 
-            <connect srcID='FoldBeast_ModelIndicator.s:$(n)'            targetID='tracelog' inputName='log' if='inlikelihood(FoldBeast.:$(n))'/>
-            <connect srcID='FoldBeast_gammaShape.s:$(n)'                targetID='tracelog' inputName='log' if='inlikelihood(FoldBeast.:$(n))'/>
-            <connect srcID='FoldBeast_ProportionInvariable.s:$(n)'       targetID='tracelog' inputName='log' if='inlikelihood(FoldBeast.:$(n))'/>
-            <connect srcID='FoldBeast_hasGammaRates.s:$(n)'                 targetID='tracelog' inputName='log' if='inlikelihood(FoldBeast.:$(n))'/>
-            <connect srcID='FoldBeast_hasInvariableSites.s:$(n)'             targetID='tracelog' inputName='log' if='inlikelihood(FoldBeast.:$(n))'/>
-            <connect srcID='FoldBeast_ActivePropInvariable.s:$(n)'           targetID='tracelog' inputName='log' if='inlikelihood(FoldBeast.:$(n))'/>
-            <connect srcID='FoldBeast_ActiveGammaShape.s:$(n)'              targetID='tracelog' inputName='log' if='inlikelihood(FoldBeast.:$(n))'/>
-            <connect srcID='FoldBeast_useExternalFreqs.s:$(n)'                 targetID='tracelog' inputName='log' if='inlikelihood(FoldBeast.:$(n))'/>
+            <connect srcID='FoldBeast_ModelIndicator.s:$(n)'            targetID='tracelog' inputName='log' if='inlikelihood(FoldBeast.s:$(n))'/>
+            <connect srcID='FoldBeast_gammaShape.s:$(n)'                targetID='tracelog' inputName='log' if='inlikelihood(FoldBeast.s:$(n))'/>
+            <connect srcID='FoldBeast_ProportionInvariable.s:$(n)'       targetID='tracelog' inputName='log' if='inlikelihood(FoldBeast.s:$(n))'/>
+            <connect srcID='FoldBeast_hasGammaRates.s:$(n)'                 targetID='tracelog' inputName='log' if='inlikelihood(FoldBeast.s:$(n))'/>
+            <connect srcID='FoldBeast_hasInvariableSites.s:$(n)'             targetID='tracelog' inputName='log' if='inlikelihood(FoldBeast.s:$(n))'/>
+            <connect srcID='FoldBeast_ActivePropInvariable.s:$(n)'           targetID='tracelog' inputName='log' if='inlikelihood(FoldBeast.s:$(n))'/>
+            <connect srcID='FoldBeast_ActiveGammaShape.s:$(n)'              targetID='tracelog' inputName='log' if='inlikelihood(FoldBeast.s:$(n))'/>
+            <connect srcID='FoldBeast_useExternalFreqs.s:$(n)'                 targetID='tracelog' inputName='log' if='inlikelihood(FoldBeast.s:$(n))'/>
 
             </subtemplate>
     </mergewith>

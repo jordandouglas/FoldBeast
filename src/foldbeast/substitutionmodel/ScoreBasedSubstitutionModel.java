@@ -42,6 +42,21 @@ abstract public class ScoreBasedSubstitutionModel extends GeneralSubstitutionMod
 		setUpQMatrix();
 	}
 	
+	
+	 @Override
+     public double[] getFrequencies() {
+		 double [] freqs = null; 
+		 if (frequencies == null){
+			freqs = new double[nrOfStates];
+			for (int i = 0; i < freqs.length; i ++) {
+				freqs[i] = 1.0 / nrOfStates;
+			}
+		 }else {
+			freqs = frequencies.getFreqs();
+		 }
+         return freqs;
+     }
+	
 	public double[] setUpQMatrix() {
 		int [][]scores = getScores();
 		double [] freqs = null; 
