@@ -8,25 +8,38 @@
      <!-- data types -->
   <service type="beast.base.evolution.datatype.DataType">
           <provider classname="foldbeast.datatype.DataType3Di"/>
+          <provider classname="foldbeast.datatype.SecondaryStructure"/>
   </service>
+
 
 
     <service type="beast.base.core.BEASTInterface">
 
          <provider classname="foldbeast.datatype.DataType3Di"/>
+         <provider classname="foldbeast.datatype.SecondaryStructure"/>
+
+         <provider classname="foldbeast.substitutionmodel.NullModelDSSP"/>
+         <provider classname="foldbeast.substitutionmodel.DSSPMatrix"/>
+
          <provider classname="foldbeast.substitutionmodel.FoldSeekSubstitutionMatrix"/>
-         <provider classname="foldbeast.substitutionmodel.NullModel"/>
+         <provider classname="foldbeast.substitutionmodel.NullModel3Di"/>
          <provider classname="foldbeast.substitutionmodel.ScoreBasedSubstitutionModel"/>
          <provider classname="foldbeast.substitutionmodel.SubstitutionModelTest3Di"/>
+         <provider classname="foldbeast.substitutionmodel.SubstitutionModelTestDSSP"/>
+
          <provider classname="foldbeast.sitemodel.FoldBeastModelTestSiteModel"/>
-         <provider classname="foldbeast.app.beauti.FoldBeastModelTestSiteModelInputEditor"/>
+         <provider classname="foldbeast.sitemodel.FoldBeastModelTestSiteModel3Di"/>
+         <provider classname="foldbeast.sitemodel.FoldBeastModelTestSiteModelDSSP"/>
 
 
     </service>
 
    <service type="beastfx.app.inputeditor.InputEditor">
-        <provider classname="foldbeast.app.beauti.FoldBeastModelTestSiteModelInputEditor"/>
+        <provider classname="foldbeast.app.beauti.FoldBeastModelTestSiteModelInputEditor3Di"/>
+        <provider classname="foldbeast.app.beauti.FoldBeastModelTestSiteModelInputEditorDSSP"/>
     </service>
+
+
 
 
 

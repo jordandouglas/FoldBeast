@@ -7,9 +7,9 @@ import java.util.List;
 
 import beastfx.app.inputeditor.BeautiDoc;
 import beastfx.app.inputeditor.SiteModelInputEditor;
-import foldbeast.sitemodel.FoldBeastModelTestSiteModel;
+import foldbeast.sitemodel.FoldBeastModelTestSiteModel3Di;
 import foldbeast.substitutionmodel.FoldSeekSubstitutionMatrix;
-import foldbeast.substitutionmodel.NullModel;
+import foldbeast.substitutionmodel.NullModel3Di;
 import foldbeast.substitutionmodel.ScoreBasedSubstitutionModel;
 import foldbeast.substitutionmodel.SubstitutionModelTest3Di;
 import javafx.geometry.Insets;
@@ -24,24 +24,24 @@ import beast.base.core.Input;
 import beast.base.core.Log;
 import beast.base.evolution.substitutionmodel.SubstitutionModel;
 
-public class FoldBeastModelTestSiteModelInputEditor extends SiteModelInputEditor {
+public class FoldBeastModelTestSiteModelInputEditor3Di extends SiteModelInputEditor {
 	static List<ScoreBasedSubstitutionModel> availableModels;
 	
 	@Override
     public Class<?> type() {
-        return FoldBeastModelTestSiteModel.class;
+        return FoldBeastModelTestSiteModel3Di.class;
     }
 	
-	public FoldBeastModelTestSiteModelInputEditor() {
+	public FoldBeastModelTestSiteModelInputEditor3Di() {
 		
 	}
     
-	public FoldBeastModelTestSiteModelInputEditor(BeautiDoc doc) {
+	public FoldBeastModelTestSiteModelInputEditor3Di(BeautiDoc doc) {
 		//System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXX");
 		super(doc);
 		if (availableModels == null) {		
 			availableModels = new ArrayList<>();
-			availableModels.add(new NullModel());
+			availableModels.add(new NullModel3Di());
 			availableModels.add(new FoldSeekSubstitutionMatrix());
 		}
 		
@@ -53,7 +53,7 @@ public class FoldBeastModelTestSiteModelInputEditor extends SiteModelInputEditor
 		super.init(input, plugin, itemNr, bExpandOption, bAddButtons);
 		
 		
-		FoldBeastModelTestSiteModel siteModel = (FoldBeastModelTestSiteModel)input.get();
+		FoldBeastModelTestSiteModel3Di siteModel = (FoldBeastModelTestSiteModel3Di)input.get();
 		SubstitutionModel sm = siteModel.substModelInput.get();
 		SubstitutionModelTest3Di substModel = (SubstitutionModelTest3Di) sm;
 		List<ScoreBasedSubstitutionModel> models = substModel.substModelInput.get();
@@ -68,8 +68,8 @@ public class FoldBeastModelTestSiteModelInputEditor extends SiteModelInputEditor
 	private void addCheckBox(ScoreBasedSubstitutionModel m, List<ScoreBasedSubstitutionModel> models, VBox box) {
 		String modelName = m.getClass().getSimpleName();
 		String modelLabel = modelName;
-		if (modelLabel.startsWith("FoldBeast_")) {
-			modelLabel = modelLabel.substring(10);
+		if (modelLabel.startsWith("FoldBeast3Di")) {
+			modelLabel = modelLabel.substring(13);
 		}
 	
 		CheckBox checkBox = new CheckBox(modelLabel);
@@ -93,7 +93,7 @@ public class FoldBeastModelTestSiteModelInputEditor extends SiteModelInputEditor
 	}
 
 	private void setModel(String label, boolean selected) {
-		FoldBeastModelTestSiteModel siteModel = (FoldBeastModelTestSiteModel) m_input.get();
+		FoldBeastModelTestSiteModel3Di siteModel = (FoldBeastModelTestSiteModel3Di) m_input.get();
 		SubstitutionModel sm = siteModel.substModelInput.get();
 		SubstitutionModelTest3Di substModel = (SubstitutionModelTest3Di) sm;
 		List<ScoreBasedSubstitutionModel> models = substModel.substModelInput.get();

@@ -6,6 +6,12 @@ import beast.base.core.Citation;
 @Citation("van Kempen, Michel, et al. \"Fast and accurate protein structure search with Foldseek.\" Nature Biotechnology (2023): 1-4.")
 public class FoldSeekSubstitutionMatrix extends ScoreBasedSubstitutionModel {
 
+	
+	@Override
+	public int getStates() {
+		return 21;
+	}
+	
 	public FoldSeekSubstitutionMatrix() {
 		
 	}

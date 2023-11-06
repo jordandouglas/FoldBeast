@@ -25,7 +25,7 @@ abstract public class ScoreBasedSubstitutionModel extends GeneralSubstitutionMod
         frequencies = frequenciesInput.get();
 
         updateMatrix = true;
-        nrOfStates = 21;
+        nrOfStates = getStates();
 
         try {
 			eigenSystem = createEigenSystem();
@@ -147,6 +147,11 @@ abstract public class ScoreBasedSubstitutionModel extends GeneralSubstitutionMod
 	@Override
 	public boolean canHandleDataType(DataType dataType) {
 		return dataType instanceof DataType3Di;
+	}
+	
+	
+	public int getStates() {
+		return 0;
 	}
 
 }
