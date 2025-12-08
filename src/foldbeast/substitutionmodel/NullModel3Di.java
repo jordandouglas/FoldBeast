@@ -6,9 +6,12 @@ import foldbeast.datatype.DataType3Di;
 public class NullModel3Di extends ScoreBasedSubstitutionModel {
 
 	
+	
+	
+	
 	@Override
 	public int getStates() {
-		return 21;
+		return 20;
 	}
 
 	public NullModel3Di() {
@@ -25,6 +28,12 @@ public class NullModel3Di extends ScoreBasedSubstitutionModel {
 			}
 		}
 		return scores;
+	}
+	
+	
+	@Override
+	public boolean canHandleDataType(DataType dt) {
+		return dt instanceof DataType3Di;
 	}
 
 }

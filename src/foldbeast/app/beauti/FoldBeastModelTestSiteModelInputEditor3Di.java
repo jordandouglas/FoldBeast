@@ -9,6 +9,8 @@ import beastfx.app.inputeditor.BeautiDoc;
 import beastfx.app.inputeditor.SiteModelInputEditor;
 import foldbeast.sitemodel.FoldBeastModelTestSiteModel3Di;
 import foldbeast.substitutionmodel.FoldSeekSubstitutionMatrix;
+import foldbeast.substitutionmodel.GHMatrixAF;
+import foldbeast.substitutionmodel.GHMatrixLLM;
 import foldbeast.substitutionmodel.NullModel3Di;
 import foldbeast.substitutionmodel.ScoreBasedSubstitutionModel;
 import foldbeast.substitutionmodel.SubstitutionModelTest3Di;
@@ -22,10 +24,11 @@ import javafx.scene.layout.VBox;
 import beast.base.core.BEASTInterface;
 import beast.base.core.Input;
 import beast.base.core.Log;
+import beast.base.evolution.substitutionmodel.GeneralSubstitutionModel;
 import beast.base.evolution.substitutionmodel.SubstitutionModel;
 
 public class FoldBeastModelTestSiteModelInputEditor3Di extends SiteModelInputEditor {
-	static List<ScoreBasedSubstitutionModel> availableModels;
+	static List<GeneralSubstitutionModel> availableModels;
 	
 	@Override
     public Class<?> type() {
@@ -43,6 +46,8 @@ public class FoldBeastModelTestSiteModelInputEditor3Di extends SiteModelInputEdi
 			availableModels = new ArrayList<>();
 			availableModels.add(new NullModel3Di());
 			availableModels.add(new FoldSeekSubstitutionMatrix());
+			availableModels.add(new GHMatrixAF());
+			availableModels.add(new GHMatrixLLM());
 		}
 		
 	}
@@ -56,16 +61,16 @@ public class FoldBeastModelTestSiteModelInputEditor3Di extends SiteModelInputEdi
 		FoldBeastModelTestSiteModel3Di siteModel = (FoldBeastModelTestSiteModel3Di)input.get();
 		SubstitutionModel sm = siteModel.substModelInput.get();
 		SubstitutionModelTest3Di substModel = (SubstitutionModelTest3Di) sm;
-		List<ScoreBasedSubstitutionModel> models = substModel.substModelInput.get();
+		List<GeneralSubstitutionModel> models = substModel.substModelInput.get();
 
 		VBox box = (VBox)((HBox)pane.getChildren().get(0)).getChildren().get(0);
-		for (ScoreBasedSubstitutionModel m : availableModels) {
+		for (GeneralSubstitutionModel m : availableModels) {
 			addCheckBox(m, models, box);
 		}
 		//validate();
 	}
 
-	private void addCheckBox(ScoreBasedSubstitutionModel m, List<ScoreBasedSubstitutionModel> models, VBox box) {
+	private void addCheckBox(GeneralSubstitutionModel m, List<GeneralSubstitutionModel> models, VBox box) {
 		String modelName = m.getClass().getSimpleName();
 		String modelLabel = modelName;
 		if (modelLabel.startsWith("FoldBeast3Di")) {
@@ -76,7 +81,7 @@ public class FoldBeastModelTestSiteModelInputEditor3Di extends SiteModelInputEdi
 		checkBox.setId(modelName);
 		
 		boolean selected = false;
-		for (ScoreBasedSubstitutionModel m0 : models) {
+		for (GeneralSubstitutionModel m0 : models) {
 			if (m0.getClass() == m.getClass()) {
 				selected = true;
 				break;
@@ -96,10 +101,10 @@ public class FoldBeastModelTestSiteModelInputEditor3Di extends SiteModelInputEdi
 		FoldBeastModelTestSiteModel3Di siteModel = (FoldBeastModelTestSiteModel3Di) m_input.get();
 		SubstitutionModel sm = siteModel.substModelInput.get();
 		SubstitutionModelTest3Di substModel = (SubstitutionModelTest3Di) sm;
-		List<ScoreBasedSubstitutionModel> models = substModel.substModelInput.get();
+		List<GeneralSubstitutionModel> models = substModel.substModelInput.get();
 		if (!selected) {
 			for (int i = 0; i< models.size(); i++) {
-				ScoreBasedSubstitutionModel m = models.get(i);
+				GeneralSubstitutionModel m = models.get(i);
 				if (m.getClass().getSimpleName().equals(label)) {
 					models.remove(i);
 					return;
@@ -108,14 +113,14 @@ public class FoldBeastModelTestSiteModelInputEditor3Di extends SiteModelInputEdi
 		} else {
 			// make sure it is not already in the list
 			for (int i = 0; i< models.size(); i++) {
-				ScoreBasedSubstitutionModel m = models.get(i);
+				GeneralSubstitutionModel m = models.get(i);
 				if (m.getClass().getSimpleName().equals(label)) {
 					return;
 				}
 			}
 			// add new instance to list
 			for (int i = 0; i< availableModels.size(); i++) {
-				ScoreBasedSubstitutionModel m = availableModels.get(i);
+				GeneralSubstitutionModel m = availableModels.get(i);
 				if (m.getClass().getSimpleName().equals(label)) {
 					models.add(m);
 					return;

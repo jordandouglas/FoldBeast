@@ -2,6 +2,35 @@
     
 
 
+    <mergewith point='substModelTemplates'>
+        
+         <subtemplate id='GH Alphafold 3Di Matrix' class='foldbeast.substitutionmodel.GHMatrixAF'
+                     suppressInputs='foldbeast.substitutionmodel.GHMatrixAF.eigenSystem,
+                                    foldbeast.substitutionmodel.GHMatrixAF.frequencies,
+                                    foldbeast.substitutionmodel.GHMatrixAF.rates'
+                     mainid='FoldBeast_GHAF_Matrix.s:$(n)'><!--value spec='XML'-->
+            <![CDATA[<plugin spec='foldbeast.substitutionmodel.GHMatrixAF' id='FoldBeast_GHAF_Matrix.s:$(n)'/>]]></subtemplate>
+
+
+         <subtemplate id='GH LLM 3Di Matrix' class='foldbeast.substitutionmodel.GHMatrixLLM'
+                     suppressInputs='foldbeast.substitutionmodel.GHMatrixLLM.eigenSystem,
+                                    foldbeast.substitutionmodel.GHMatrixLLM.frequencies,
+                                    foldbeast.substitutionmodel.GHMatrixLLM.rates'
+                     mainid='FoldBeast_LLM_Matrix.s:$(n)'><!--value spec='XML'-->
+            <![CDATA[<plugin spec='foldbeast.substitutionmodel.GHMatrixLLM' id='FoldBeast_LLM_Matrix.s:$(n)'/>]]></subtemplate>
+
+
+         <subtemplate id='Foldseek 3Di Matrix' class='foldbeast.substitutionmodel.FoldSeekSubstitutionMatrix'
+                     suppressInputs='foldbeast.substitutionmodel.FoldSeekSubstitutionMatrix.eigenSystem,
+                                    foldbeast.substitutionmodel.FoldSeekSubstitutionMatrix.frequencies,
+                                    foldbeast.substitutionmodel.FoldSeekSubstitutionMatrix.rates'
+                     mainid='FoldBeast_Foldseek_Matrix.s:$(n)'><!--value spec='XML'-->
+            <![CDATA[<plugin spec='foldbeast.substitutionmodel.FoldSeekSubstitutionMatrix' id='FoldBeast_Foldseek_Matrix.s:$(n)'/>]]></subtemplate>
+
+    </mergewith>
+
+
+
     <mergewith point='aux-sitemodel-panels'>
         <!-- site models -->
         <!-- inputLabelMap='beast.evolution.sitemodel.FoldBeastModelTestSiteModel3Di.mutationRate=Substitution Rate'-->
@@ -13,21 +42,16 @@ foldbeast.sitemodel.FoldBeastModelTestSiteModel3Di.shape,
 foldbeast.sitemodel.FoldBeastModelTestSiteModel3Di.proportionInvariant,
 foldbeast.sitemodel.FoldBeastModelTestSiteModel3Di.hasInvariantSites,
 foldbeast.sitemodel.FoldBeastModelTestSiteModel3Di.hasGammaRates,
-bmodeltest.math.distributions.BMTPrior.x,
-bmodeltest.math.distributions.BMTPrior.count,
-bmodeltest.math.distributions.NucleotideRevJumpSubstModelRatePrior.substModel,
-bmodeltest.math.distributions.NucleotideRevJumpSubstModelRatePrior.x,
-bmodeltest.math.distributions.NucleotideRevJumpSubstModelRatePrior.modelIndicator,
-bmodeltest.math.distributions.NucleotideRevJumpSubstModelRatePrior.distr"
+foldbeast.sitemodel.FoldBeastModelTestSiteModel3Di.substModel"
             >
             <![CDATA[
 
-        <stateNode id="FoldBeast3Di_ModelIndicator.s:$(n)" spec="parameter.IntegerParameter" lower="0" upper="1">0</stateNode>
+        <stateNode id="FoldBeast3Di_ModelIndicator.s:$(n)" spec="parameter.IntegerParameter" lower="0" upper="3">0</stateNode>
         <parameter id="FoldBeast3Di_gammaShape.s:$(n)" lower="0.1" name="stateNode">1.0</parameter>
         <parameter id="FoldBeast3Di_ProportionInvariable.s:$(n)" lower="0.0" name="stateNode" upper="1.0">0.1</parameter>
         <stateNode id="FoldBeast3Di_hasInvariableSites.s:$(n)" spec="parameter.IntegerParameter">1</stateNode>        
         <stateNode id="FoldBeast3Di_hasGammaRates.s:$(n)" spec="parameter.IntegerParameter">1</stateNode>  
-        <parameter id="FoldBeast3Di_frequencies.s:$(n)" lower="0.0" upper="1.0" name="stateNode" dimension="21">0.04761905</parameter>
+        <parameter id="FoldBeast3Di_frequencies.s:$(n)" lower="0.0" upper="1.0" name="stateNode" dimension="20">0.05</parameter>
 
         <!-- frequencies estimation -->
         <stateNode id="FoldBeast3Di_useExternalFreqs.s:$(n)" spec="parameter.BooleanParameter">false</stateNode>
@@ -47,7 +71,7 @@ bmodeltest.math.distributions.NucleotideRevJumpSubstModelRatePrior.distr"
             
         <prior id="FoldBeast3Di_freqsPrior.s:$(n)" name="distribution" x="@FoldBeast3Di_frequencies.s:$(n)">
             <distr id="FoldBeast3Di_Dirichlet.s:$(n)" spec="beast.base.inference.distribution.Dirichlet">
-                <parameter id="FoldBeast3Di_Dirichlet_alpha.s:$(n)" spec="parameter.RealParameter" dimension="21" lower="0.0" name="alpha" upper="0.0">4.0
+                <parameter id="FoldBeast3Di_Dirichlet_alpha.s:$(n)" spec="parameter.RealParameter" dimension="20" lower="0.0" name="alpha" upper="0.0">4.0
                 </parameter>
             </distr>
         </prior>
@@ -62,6 +86,8 @@ bmodeltest.math.distributions.NucleotideRevJumpSubstModelRatePrior.distr"
                     <modelIndicator idref="FoldBeast3Di_ModelIndicator.s:$(n)"/>
                     <model id="FoldBeast3Di_NullModel.0" spec="foldbeast.substitutionmodel.NullModel3Di"/>
                     <model id="FoldBeast3Di_FoldSeek.0" spec="foldbeast.substitutionmodel.FoldSeekSubstitutionMatrix"/>
+                    <model id="FoldBeast3Di_GHMatrixAF.0" spec="foldbeast.substitutionmodel.GHMatrixAF"/>
+                    <model id="FoldBeast3Di_GHMatrixLLM.0" spec="foldbeast.substitutionmodel.GHMatrixLLM"/>
                 </substModel>
         </siteModel>
     
@@ -135,139 +161,6 @@ bmodeltest.math.distributions.NucleotideRevJumpSubstModelRatePrior.distr"
             </subtemplate>
     </mergewith>
 
-
-    <mergewith point='aux-sitemodel-panels'>
-        <!-- site models -->
-        <!-- inputLabelMap='beast.evolution.sitemodel.FoldBeastModelTestSiteModelDSSP.mutationRate=Substitution Rate'-->
-        <subtemplate id='FoldBeast DSSP Model Averaging' class='foldbeast.sitemodel.FoldBeastModelTestSiteModelDSSP' mainid='FoldBeastDSSP.s:$(n)'
-
-            suppressInputs="FoldBeast.sitemodel.FoldBeastModelTestSiteModelDSSP.substModel,
-foldbeast.sitemodel.FoldBeastModelTestSiteModelDSSP.gammaCategoryCount,
-foldbeast.sitemodel.FoldBeastModelTestSiteModelDSSP.shape,
-foldbeast.sitemodel.FoldBeastModelTestSiteModelDSSP.proportionInvariant,
-foldbeast.sitemodel.FoldBeastModelTestSiteModelDSSP.hasInvariantSites,
-foldbeast.sitemodel.FoldBeastModelTestSiteModelDSSP.hasGammaRates,
-bmodeltest.math.distributions.BMTPrior.x,
-bmodeltest.math.distributions.BMTPrior.count,
-bmodeltest.math.distributions.NucleotideRevJumpSubstModelRatePrior.substModel,
-bmodeltest.math.distributions.NucleotideRevJumpSubstModelRatePrior.x,
-bmodeltest.math.distributions.NucleotideRevJumpSubstModelRatePrior.modelIndicator,
-bmodeltest.math.distributions.NucleotideRevJumpSubstModelRatePrior.distr"
-            >
-            <![CDATA[
-
-        <stateNode id="FoldBeastDSSP_ModelIndicator.s:$(n)" spec="parameter.IntegerParameter" lower="0" upper="1">0</stateNode>
-        <parameter id="FoldBeastDSSP_gammaShape.s:$(n)" lower="0.1" name="stateNode">1.0</parameter>
-        <parameter id="FoldBeastDSSP_ProportionInvariable.s:$(n)" lower="0.0" name="stateNode" upper="1.0">0.1</parameter>
-        <stateNode id="FoldBeastDSSP_hasInvariableSites.s:$(n)" spec="parameter.IntegerParameter">1</stateNode>        
-        <stateNode id="FoldBeastDSSP_hasGammaRates.s:$(n)" spec="parameter.IntegerParameter">1</stateNode>  
-        <parameter id="FoldBeastDSSP_frequencies.s:$(n)" lower="0.0" upper="1.0" name="stateNode" dimension="8">0.125</parameter>
-
-        <!-- frequencies estimation -->
-        <stateNode id="FoldBeastDSSP_useExternalFreqs.s:$(n)" spec="parameter.BooleanParameter">false</stateNode>
-
-
-        <distribution id="FoldBeastDSSP_GammaShapePrior.s:$(n)" spec="bmodeltest.math.distributions.BMTPrior" count="@FoldBeastDSSP_hasGammaRates.s:$(n)" x="@FoldBeastDSSP_gammaShape.s:$(n)">
-                <Exponential id="Exponential.0" name="distr">
-                    <parameter lower="0.0" name="mean" upper="0.0" estimate='false'>1.0</parameter>
-                </Exponential>
-        </distribution>
-        
-        <distribution id="FoldBeastDSSP_PropInvariablePrior.s:$(n)" spec="bmodeltest.math.distributions.BMTPrior" count="@FoldBeastDSSP_hasInvariableSites.s:$(n)" x="@FoldBeastDSSP_ProportionInvariable.s:$(n)">
-            <Beta name="distr" alpha="1.0" beta="4.0"/>
-        </distribution>
-
-        <prior id='FoldBeastDSSP_MutationRatePrior.s:$(n)' x='@FoldBeastDSSP_mutationRate.s:$(n)'><distr spec="OneOnX"/></prior>
-            
-        <prior id="FoldBeastDSSP_freqsPrior.s:$(n)" name="distribution" x="@FoldBeastDSSP_frequencies.s:$(n)">
-            <distr id="FoldBeastDSSP_Dirichlet.s:$(n)" spec="beast.base.inference.distribution.Dirichlet">
-                <parameter id="FoldBeastDSSP_Dirichlet_alpha.s:$(n)" spec="parameter.RealParameter" dimension="8" lower="0.0" name="alpha" upper="0.0">4.0
-                </parameter>
-            </distr>
-        </prior>
-
-        <siteModel id="FoldBeastDSSP.s:$(n)" spec="foldbeast.sitemodel.FoldBeastModelTestSiteModelDSSP" 
-            gammaCategoryCount="4" proportionInvariant="@FoldBeastDSSP_ProportionInvariable.s:$(n)" shape="@FoldBeastDSSP_gammaShape.s:$(n)"
-            hasGammaRates="@FoldBeastDSSP_hasGammaRates.s:$(n)" hasInvariantSites="@FoldBeastDSSP_hasInvariableSites.s:$(n)">
-            <parameter id="FoldBeastDSSP_mutationRate.s:$(n)" estimate="false" name="mutationRate">1.0</parameter>
-                <substModel id="FoldBeastDSSP_substmodel.s:$(n)" spec="foldbeast.substitutionmodel.SubstitutionModelTestDSSP">
-                    <frequencies id="FoldBeastDSSP_freqs.s:$(n)" spec="Frequencies" frequencies="@FoldBeastDSSP_frequencies.s:$(n)"/>
-                    <useExternalFreqs idref="FoldBeastDSSP_useExternalFreqs.s:$(n)"/>
-                    <modelIndicator idref="FoldBeastDSSP_ModelIndicator.s:$(n)"/>
-                    <model id="FoldBeastDSSP_NullModel.1" spec="foldbeast.substitutionmodel.NullModelDSSP"/>
-                    <model id="FoldBeastDSSP_DSSPMatrix.1" spec="foldbeast.substitutionmodel.DSSPMatrix"/>
-                </substModel>
-        </siteModel>
-    
-    
-        <operator id="FoldBeastDSSP_hasGammaRatesFlipper.s:$(n)" spec="bmodeltest.evolution.operators.BMTBirthDeathOperator" count="@FoldBeastDSSP_hasGammaRates.s:$(n)" rates="@FoldBeastDSSP_gammaShape.s:$(n)" weight="0.1"/>
-        <operator id="FoldBeastDSSP_gammaShapeScaler.s:$(n)" spec="bmodeltest.evolution.operators.BMTScaleOperator" count="@FoldBeastDSSP_hasGammaRates.s:$(n)" parameter="@FoldBeastDSSP_gammaShape.s:$(n)" scaleFactor="0.5" weight="0.5"/>
-
-        <operator id="FoldBeastDSSP_hasInvariableSitesFlipper.s:$(n)" spec="bmodeltest.evolution.operators.BMTBirthDeathOperator" count="@FoldBeastDSSP_hasInvariableSites.s:$(n)" rates="@FoldBeastDSSP_ProportionInvariable.s:$(n)" weight="0.1"/>
-        <operator id="FoldBeastDSSP_ProportionInvariableScaler.s:$(n)" spec="bmodeltest.evolution.operators.BMTScaleOperator" count="@FoldBeastDSSP_hasInvariableSites.s:$(n)" parameter="@FoldBeastDSSP_ProportionInvariable.s:$(n)" scaleFactor="0.5" weight="0.5"/>
-
-        <operator id='FoldBeastDSSP_mutationRateScaler.s:$(n)' spec='kernel.BactrianScaleOperator' scaleFactor="0.1" weight="0.1" parameter="@FoldBeastDSSP_mutationRate.s:$(n)"/>
-            
-        <operator id="FoldBeastDSSP_ModelIndicatorUniformOperator.s:$(n)" spec="UniformOperator" parameter="@FoldBeastDSSP_ModelIndicator.s:$(n)" weight="3.0"/>
-        <operator id="FoldBeastDSSP_FreqsFlipOperator.s:$(n)" spec="BitFlipOperator" parameter="@FoldBeastDSSP_useExternalFreqs.s:$(n)" weight="0.1"/>
-
-
-        <log id="FoldBeastDSSP_ActivePropInvariable.s:$(n)" spec='bmodeltest.evolution.substitutionmodel.ActiveLogger'>
-                <parameter idref="FoldBeastDSSP_ProportionInvariable.s:$(n)"/>
-                <mask idref="FoldBeastDSSP_hasInvariableSites.s:$(n)"/>
-        </log>
-        <log id="FoldBeastDSSP_ActiveGammaShape.s:$(n)" spec='bmodeltest.evolution.substitutionmodel.ActiveLogger'>
-                <parameter idref="FoldBeastDSSP_gammaShape.s:$(n)"/>
-                <mask idref="FoldBeastDSSP_hasGammaRates.s:$(n)"/>
-        </log>
-            
-        <operator id="FoldBeastDSSP_FrequenciesAVMNOperator.s:$(n)" spec="beast.base.evolution.operator.kernel.AdaptableVarianceMultivariateNormalOperator" beta="0.05" burnin="500" initial="1000" weight="1.0">
-            <transformations id="FoldBeastDSSP_LogConstrainedSumTransform.s:$(n)" spec="beast.base.inference.operator.kernel.Transform$LogConstrainedSumTransform">
-                <f idref="FoldBeastDSSP_frequencies.s:$(n)"/>
-            </transformations>
-        </operator>
-            ]]>
-
-            <connect method="beastfx.app.inputeditor.SiteModelInputEditor.customConnector"/>
-
-            <connect srcID='FoldBeastDSSP_ModelIndicator.s:$(n)'       targetID='state' inputName='stateNode' if='inlikelihood(FoldBeastDSSP.s:$(n))'/>
-            <connect srcID='FoldBeastDSSP_gammaShape.s:$(n)'           targetID='state' inputName='stateNode' if='inlikelihood(FoldBeastDSSP.s:$(n)) and FoldBeastDSSP_gammaShape.s:$(n)/estimate=true'/>
-            <connect srcID='FoldBeastDSSP_ProportionInvariable.s:$(n)'  targetID='state' inputName='stateNode' if='inlikelihood(FoldBeastDSSP.s:$(n)) and FoldBeastDSSP_ProportionInvariable.s:$(n)/estimate=true'/>
-            <connect srcID='FoldBeastDSSP_hasInvariableSites.s:$(n)'        targetID='state' inputName='stateNode' if='inlikelihood(FoldBeastDSSP.s:$(n)) and FoldBeastDSSP_hasInvariableSites.s:$(n)/estimate=true'/>
-            <connect srcID='FoldBeastDSSP_hasGammaRates.s:$(n)'            targetID='state' inputName='stateNode' if='inlikelihood(FoldBeastDSSP.s:$(n)) and FoldBeastDSSP_hasGammaRates.s:$(n)/estimate=true'/>
-            <connect srcID='FoldBeastDSSP_useExternalFreqs.s:$(n)'            targetID='state' inputName='stateNode' if='inlikelihood(FoldBeastDSSP.s:$(n))'/>
-
-            <connect srcID='FoldBeastDSSP_MutationRatePrior.s:$(n)'         targetID='prior' inputName='distribution' if='nooperator(FixMeanMutationRatesOperator) and inlikelihood(FoldBeastDSSP_mutationRate.s:$(n)) and FoldBeastDSSP_mutationRate.s:$(n)/estimate=true'/>
-            <connect srcID='FoldBeastDSSP_mutationRate.s:$(n)'              targetID='state' inputName='stateNode' if='inlikelihood(FoldBeastDSSP_mutationRate.s:$(n)) and FoldBeastDSSP_mutationRate.s:$(n)/estimate=true'/>
-            <connect srcID='FoldBeastDSSP_mutationRateScaler.s:$(n)'        targetID='mcmc' inputName='operator' if='nooperator(FixMeanMutationRatesOperator) and inlikelihood(FoldBeastDSSP_mutationRate.s:$(n)) and FoldBeastDSSP_mutationRate.s:$(n)/estimate=true'>Scales mutation rate of partition s:$(n)</connect>
-            <connect srcID='FoldBeastDSSP_mutationRate.s:$(n)'              targetID='tracelog' inputName='log' if='inlikelihood(FoldBeastDSSP_mutationRate.s:$(n)) and FoldBeastDSSP_mutationRate.s:$(n)/estimate=true'/>
-
-            <connect srcID='FoldBeastDSSP_freqsPrior.s:$(n)'                targetID='prior' inputName='distribution' if='inlikelihood(FoldBeastDSSP_frequencies.s:$(n)) and FoldBeastDSSP_frequencies.s:$(n)/estimate=true'/>
-            <connect srcID='FoldBeastDSSP_frequencies.s:$(n)'               targetID='state' inputName='stateNode' if='inlikelihood(FoldBeastDSSP_frequencies.s:$(n)) and FoldBeastDSSP_frequencies.s:$(n)/estimate=true'/>
-            <connect srcID='FoldBeastDSSP_FrequenciesAVMNOperator.s:$(n)'   targetID='mcmc' inputName='operator' if='inlikelihood(FoldBeastDSSP_frequencies.s:$(n)) and FoldBeastDSSP_frequencies.s:$(n)/estimate=true'>AVMN proposal for frequencies of partition s:$(n)</connect>
-            <connect srcID='FoldBeastDSSP_frequencies.s:$(n)'               targetID='tracelog' inputName='log' if='inlikelihood(FoldBeastDSSP_frequencies.s:$(n)) and FoldBeastDSSP_frequencies.s:$(n)/estimate=true'/>
-            
-            <connect srcID='FoldBeastDSSP_GammaShapePrior.s:$(n)'           targetID='prior' inputName='distribution' if='inlikelihood(FoldBeastDSSP.s:$(n)) and FoldBeastDSSP_gammaShape.s:$(n)/estimate=true'>Prior on gamma shape parameter for partition s:$(n)</connect>
-            <connect srcID='FoldBeastDSSP_PropInvariablePrior.s:$(n)'        targetID='prior' inputName='distribution' if='inlikelihood(FoldBeastDSSP.s:$(n)) and FoldBeastDSSP_ProportionInvariable.s:$(n)/estimate=true'>Prior on proportion invariant for partition s:$(n)</connect>
-
-            <connect srcID='FoldBeastDSSP_gammaShapeScaler.s:$(n)'          targetID='mcmc' inputName='operator' if='inlikelihood(FoldBeastDSSP.s:$(n)) and FoldBeastDSSP_gammaShape.s:$(n)/estimate=true'>Scales gamma shape parameter of partition s:$(n)</connect>
-            <connect srcID='FoldBeastDSSP_ProportionInvariableScaler.s:$(n)' targetID='mcmc' inputName='operator' if='inlikelihood(FoldBeastDSSP.s:$(n)) and FoldBeastDSSP_ProportionInvariable.s:$(n)/estimate=true'>Scales proportion invariant of partition s:$(n)</connect>
-            <connect srcID='FoldBeastDSSP_hasGammaRatesFlipper.s:$(n)'      targetID='mcmc' inputName='operator' if='inlikelihood(FoldBeastDSSP.s:$(n)) and FoldBeastDSSP_hasGammaRates.s:$(n)/estimate=true'>Switches gamma rates on/off of partition s:$(n)</connect>
-            <connect srcID='FoldBeastDSSP_hasInvariableSitesFlipper.s:$(n)'  targetID='mcmc' inputName='operator' if='inlikelihood(FoldBeastDSSP.s:$(n)) and FoldBeastDSSP_hasInvariableSites.s:$(n)/estimate=true'>Switches invariant sites on/off of partition s:$(n)</connect>
-            <connect srcID='FoldBeastDSSP_FreqsFlipOperator.s:$(n)'         targetID='mcmc' inputName='operator' if='inlikelihood(FoldBeastDSSP.s:$(n))'>Switches equal frequencies of partition s:$(n)</connect>
-            <connect srcID="FoldBeastDSSP_ModelIndicatorUniformOperator.s:$(n)" targetID='mcmc' inputName='operator' if='inlikelihood(FoldBeastDSSP.s:$(n))'>Resersible jump of subst models for partition s:$(n)</connect>
-
-            <connect srcID='FoldBeastDSSP_ModelIndicator.s:$(n)'            targetID='tracelog' inputName='log' if='inlikelihood(FoldBeastDSSP.s:$(n))'/>
-            <connect srcID='FoldBeastDSSP_gammaShape.s:$(n)'                targetID='tracelog' inputName='log' if='inlikelihood(FoldBeastDSSP.s:$(n))'/>
-            <connect srcID='FoldBeastDSSP_ProportionInvariable.s:$(n)'       targetID='tracelog' inputName='log' if='inlikelihood(FoldBeastDSSP.s:$(n))'/>
-            <connect srcID='FoldBeastDSSP_hasGammaRates.s:$(n)'                 targetID='tracelog' inputName='log' if='inlikelihood(FoldBeastDSSP.s:$(n))'/>
-            <connect srcID='FoldBeastDSSP_hasInvariableSites.s:$(n)'             targetID='tracelog' inputName='log' if='inlikelihood(FoldBeastDSSP.s:$(n))'/>
-            <connect srcID='FoldBeastDSSP_ActivePropInvariable.s:$(n)'           targetID='tracelog' inputName='log' if='inlikelihood(FoldBeastDSSP.s:$(n))'/>
-            <connect srcID='FoldBeastDSSP_ActiveGammaShape.s:$(n)'              targetID='tracelog' inputName='log' if='inlikelihood(FoldBeastDSSP.s:$(n))'/>
-            <connect srcID='FoldBeastDSSP_useExternalFreqs.s:$(n)'                 targetID='tracelog' inputName='log' if='inlikelihood(FoldBeastDSSP.s:$(n))'/>
-
-            </subtemplate>
-    </mergewith>
 
 
 

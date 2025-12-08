@@ -27,12 +27,12 @@ import beast.base.evolution.substitutionmodel.GeneralSubstitutionModel;
 public class SubstitutionModelTest3Di extends GeneralSubstitutionModel {
 	final public Input<BooleanParameter> useExternalFreqsInput = new Input<>("useExternalFreqs", "if false, use substitution model frequencies, "
 			+ "otherwise use frequencies from frequencies input (e.g. empirical frequencies)", new BooleanParameter("false"));
-	final public Input<List<ScoreBasedSubstitutionModel>> substModelInput = new Input<>("model", "empicial amino acid substitution model", new ArrayList<>(), Validate.REQUIRED);
+	final public Input<List<GeneralSubstitutionModel>> substModelInput = new Input<>("model", "empicial amino acid substitution model", new ArrayList<>(), Validate.REQUIRED);
 	final public Input<IntegerParameter> modelIndicatorInput = new Input<>("modelIndicator", "index of the model in list of models that is used for its rates and frequencies", Validate.REQUIRED);
 
 	BooleanParameter useExternalFreqs;
 	IntegerParameter modelIndicator;
-	List<ScoreBasedSubstitutionModel> models;
+	List<GeneralSubstitutionModel> models;
 	
 	public SubstitutionModelTest3Di() {
 		ratesInput.setRule(Validate.OPTIONAL);
@@ -75,9 +75,25 @@ public class SubstitutionModelTest3Di extends GeneralSubstitutionModel {
 	
 	@Override
 	public void setupRelativeRates() {
-		ScoreBasedSubstitutionModel model = models.get(modelIndicator.getValue());
-    	double [] empiricalRates = model.getRelativeRates();
-        System.arraycopy(empiricalRates, 0, relativeRates, 0, empiricalRates.length);
+		GeneralSubstitutionModel model = models.get(modelIndicator.getValue());
+		
+    	if (model instanceof ScoreBasedSubstitutionModel) {
+    		
+    		ScoreBasedSubstitutionModel model2 = (ScoreBasedSubstitutionModel)model;
+    		double[] empiricalRates = model2.getRelativeRates();
+            System.arraycopy(empiricalRates, 0, relativeRates, 0, empiricalRates.length);
+            
+            
+    	}else if (model instanceof EmpiricalSubstitutionModel) {
+    		
+    		EmpiricalSubstitutionModel model2 = (EmpiricalSubstitutionModel)model;
+    		double[] empiricalRates = model2.getEmpericalRateValues();
+            System.arraycopy(empiricalRates, 0, relativeRates, 0, empiricalRates.length);
+            
+    	}
+		
+		
+    	
     }
 
 	@Override
@@ -85,15 +101,24 @@ public class SubstitutionModelTest3Di extends GeneralSubstitutionModel {
 		if (useExternalFreqs.getValue()) {
 			return super.getFrequencies();
 		}
-		ScoreBasedSubstitutionModel model = models.get(modelIndicator.getValue());
+		GeneralSubstitutionModel model = models.get(modelIndicator.getValue());
         return model.getFrequencies();
 	}
 	
 	
     @Override
     public double[] getRateMatrix(Node node) {
-    	ScoreBasedSubstitutionModel model = models.get(modelIndicator.getValue());
-        return model.setUpQMatrix();
+    	
+    	GeneralSubstitutionModel model = models.get(modelIndicator.getValue());
+    	if (model instanceof ScoreBasedSubstitutionModel) {
+    		ScoreBasedSubstitutionModel model2 = (ScoreBasedSubstitutionModel)model;
+    		return model2.setUpQMatrix();
+    	}else if (model instanceof EmpiricalSubstitutionModel) {
+    		
+    		EmpiricalSubstitutionModel model2 = (EmpiricalSubstitutionModel)model;
+    		return model2.getRateMatrix(node);
+    	}
+        return null;
     }	
 	
 	
