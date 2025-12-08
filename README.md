@@ -1,6 +1,6 @@
 # FoldBeast
 
-FoldBeast enabled structural phylogenetic inference using the 3Di structural alphabet (see review: Puente-Lelievre et al. 2025). Currently, there are three matrices available: the original Foldseek 3Di matrix (van Kempfen et al. 2023), and the GH AlphaFold and LLM matrices (Garg and Hochberg 2025). This package enables inference in all three matrices, as well as model averaging.
+FoldBeast enables structural phylogenetic inference using the 3Di structural alphabet (see review: Puente-Lelievre et al. 2025). Currently, there are three matrices available: the original Foldseek 3Di matrix (van Kempfen et al. 2023), and the GH AlphaFold and LLM matrices (Garg and Hochberg 2025). This package enables inference in all three matrices, as well as model averaging.
 
 
 
@@ -33,19 +33,19 @@ This package requires BEAST 2.7 or newer. To follow this tutorial, the following
 
 
 1. Launch BEAUti.
-2. Load the two alignment files in the `examples/` folder.
+2. Load the two `fasta` alignment files in the `examples/` folder.
 3. Select amino acid as the data type for `crimvlg_aa` and select 3Di as the datatype for `crimvlg_3di`. This alignment is an anticodon binding domain from eight aminoacyl-tRNA synthetase families.
 
 4. Link the two partitions into the same tree, but let them have their own clock and site models.
 
-![alt text](figs/partitions.png)
+![alt text](fig/partitions.png)
 
 5. Open the `Site Model` tab.
 6. To estimate the amino acid site and substitution model, select the `OBAMA Bayesian Model Averaging` model for the `crimvlg_aa` partition.
 7.  To estimate the 3Di site and substitution model, select the `Fold Beast 3Di Model Averaging` model for the `crimvlg_3di` partition. This will compare the four models described at the top of this page, plus a "null model" where all exchangeability rates are equal. If this model is chosen, there may be something wrong with the analysis, for example amino acids may have been uploaded instead of 3Di characters.
 8. To estimate the relative rate of the two partitions, tick the `Estimate` box next to `Mutation Rate` on either partition.
 
-![alt text](figs/siteModel.png)
+![alt text](fig/siteModel.png)
 
 9. Open the `Clock Model` tab and select the `Optimised Relaxed Clock` for either partition.
 10. Open the `Priors` tab and make any desired adjustments to the tree prior and other priors, as per usual.
