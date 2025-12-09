@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><beast beautitemplate='Standard' beautistatus='' namespace="beast.core:beast.evolution.alignment:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.base.evolution.alignment:beast.pkgmgmt:beast.base.core:beast.base.inference:beast.base.evolution.tree.coalescent:beast.pkgmgmt:beast.base.core:beast.base.inference.util:beast.evolution.nuc:beast.base.evolution.operator:beast.base.inference.operator:beast.base.evolution.sitemodel:beast.base.evolution.substitutionmodel:beast.base.evolution.likelihood" required="BEAST.base v2.7.8:bModelTest v1.3.3:FoldBeast v0.0.1:ORC v1.2.1:BEASTLabs v2.0.3" version="2.7">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><beast beautitemplate='Standard' beautistatus='' namespace="beast.core:beast.evolution.alignment:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.base.evolution.alignment:beast.pkgmgmt:beast.base.core:beast.base.inference:beast.base.evolution.tree.coalescent:beast.pkgmgmt:beast.base.core:beast.base.inference.util:beast.evolution.nuc:beast.base.evolution.operator:beast.base.inference.operator:beast.base.evolution.sitemodel:beast.base.evolution.substitutionmodel:beast.base.evolution.likelihood" required="BEAST.base v2.7.8:bModelTest v1.3.3:FoldBeast v0.0.2:OBAMA v1.1.1:ORC v1.2.1:BEASTLabs v2.0.3" version="2.7">
 
     <data
 id="crimvlg_aa"
@@ -334,20 +334,20 @@ dataType="3Di">
             <stateNode id="FoldBeast3Di_hasGammaRates.s:crimvlg_3di" spec="parameter.IntegerParameter">1</stateNode>
             <stateNode id="FoldBeast3Di_useExternalFreqs.s:crimvlg_3di" spec="parameter.BooleanParameter">false</stateNode>
             <parameter id="FoldBeast3Di_frequencies.s:crimvlg_3di" spec="parameter.RealParameter" dimension="20" lower="0.0" name="stateNode" upper="1.0">0.05</parameter>
-            <stateNode id="FoldBeast3Di_ModelIndicator.s:crimvlg_aa" spec="parameter.IntegerParameter" lower="0" upper="3">0</stateNode>
-            <parameter id="FoldBeast3Di_gammaShape.s:crimvlg_aa" spec="parameter.RealParameter" lower="0.1" name="stateNode">1.0</parameter>
-            <parameter id="FoldBeast3Di_ProportionInvariable.s:crimvlg_aa" spec="parameter.RealParameter" lower="0.0" name="stateNode" upper="1.0">0.1</parameter>
-            <stateNode id="FoldBeast3Di_hasInvariableSites.s:crimvlg_aa" spec="parameter.IntegerParameter">1</stateNode>
-            <stateNode id="FoldBeast3Di_hasGammaRates.s:crimvlg_aa" spec="parameter.IntegerParameter">1</stateNode>
-            <stateNode id="FoldBeast3Di_useExternalFreqs.s:crimvlg_aa" spec="parameter.BooleanParameter">false</stateNode>
-            <parameter id="FoldBeast3Di_frequencies.s:crimvlg_aa" spec="parameter.RealParameter" dimension="20" lower="0.0" name="stateNode" upper="1.0">0.05</parameter>
+            <stateNode id="OBAMA_ModelIndicator.s:crimvlg_aa" spec="parameter.IntegerParameter" lower="0" upper="14">0</stateNode>
+            <parameter id="OBAMA_gammaShape.s:crimvlg_aa" spec="parameter.RealParameter" lower="0.1" name="stateNode">1.0</parameter>
+            <parameter id="OBAMA_ProportionInvariable.s:crimvlg_aa" spec="parameter.RealParameter" lower="0.0" name="stateNode" upper="1.0">0.1</parameter>
+            <stateNode id="OBAMA_hasInvariableSites.s:crimvlg_aa" spec="parameter.IntegerParameter">1</stateNode>
+            <stateNode id="OBAMA_hasGammaRates.s:crimvlg_aa" spec="parameter.IntegerParameter">1</stateNode>
+            <stateNode id="OBAMA_useExternalFreqs.s:crimvlg_aa" spec="parameter.BooleanParameter">false</stateNode>
+            <parameter id="OBAMA_frequencies.s:crimvlg_aa" spec="parameter.RealParameter" dimension="20" lower="0.0" name="stateNode" upper="1.0">0.05</parameter>
             <parameter id="ORCsigma.c:crimvlg_3di" spec="parameter.RealParameter" lower="0.0" name="stateNode">0.2</parameter>
             <parameter id="ORCRates.c:crimvlg_3di" spec="parameter.RealParameter" dimension="284" lower="1.0E-100" name="stateNode">0.5</parameter>
             <parameter id="ORCucldMean.c:crimvlg_aa" spec="parameter.RealParameter" name="stateNode">1.0</parameter>
             <parameter id="ORCsigma.c:crimvlg_aa" spec="parameter.RealParameter" lower="0.0" name="stateNode">0.2</parameter>
             <parameter id="ORCRates.c:crimvlg_aa" spec="parameter.RealParameter" dimension="284" lower="1.0E-100" name="stateNode">0.5</parameter>
+            <parameter id="OBAMA_mutationRate.s:crimvlg_aa" spec="parameter.RealParameter" name="stateNode">1.0</parameter>
             <parameter id="FoldBeast3Di_mutationRate.s:crimvlg_3di" spec="parameter.RealParameter" name="stateNode">1.0</parameter>
-            <parameter id="FoldBeast3Di_mutationRate.s:crimvlg_aa" spec="parameter.RealParameter" name="stateNode">1.0</parameter>
         </state>
         <init id="RandomTree.t:crimvlg_aa" spec="RandomTree" estimate="false" initial="@Tree.t:crimvlg_aa" taxa="@crimvlg_aa">
             <populationModel id="ConstantPopulation0.t:crimvlg_aa" spec="ConstantPopulation">
@@ -357,26 +357,12 @@ dataType="3Di">
         <distribution id="posterior" spec="CompoundDistribution">
             <distribution id="prior" spec="CompoundDistribution">
                 <distribution id="YuleModel.t:crimvlg_aa" spec="beast.base.evolution.speciation.YuleModel" birthDiffRate="@birthRate.t:crimvlg_aa" tree="@Tree.t:crimvlg_aa"/>
-                <distribution id="FoldBeast3Di_PropInvariablePrior.s:crimvlg_3di" spec="bmodeltest.math.distributions.BMTPrior" count="@FoldBeast3Di_hasInvariableSites.s:crimvlg_3di" x="@FoldBeast3Di_ProportionInvariable.s:crimvlg_3di">
-                    <Beta id="Beta.0" name="distr">
-                        <alpha id="Function$Constant.4" spec="Function$Constant" value="1.0"/>
-                        <beta id="Function$Constant.5" spec="Function$Constant" value="4.0"/>
-                    </Beta>
-                </distribution>
-                <distribution id="FoldBeast3Di_PropInvariablePrior.s:crimvlg_aa" spec="bmodeltest.math.distributions.BMTPrior" count="@FoldBeast3Di_hasInvariableSites.s:crimvlg_aa" x="@FoldBeast3Di_ProportionInvariable.s:crimvlg_aa">
-                    <Beta id="Beta.1" name="distr">
-                        <alpha id="Function$Constant.6" spec="Function$Constant" value="1.0"/>
-                        <beta id="Function$Constant.7" spec="Function$Constant" value="4.0"/>
-                    </Beta>
-                </distribution>
+                <prior id="YuleBirthRatePrior.t:crimvlg_aa" name="distribution" x="@birthRate.t:crimvlg_aa">
+                    <Uniform id="Uniform.4" name="distr" upper="Infinity"/>
+                </prior>
                 <prior id="FoldBeast3Di_freqsPrior.s:crimvlg_3di" name="distribution" x="@FoldBeast3Di_frequencies.s:crimvlg_3di">
                     <distr id="FoldBeast3Di_Dirichlet.s:crimvlg_3di" spec="distribution.Dirichlet">
                         <parameter id="FoldBeast3Di_Dirichlet_alpha.s:crimvlg_3di" spec="parameter.RealParameter" dimension="20" lower="0.0" name="alpha" upper="0.0">4.0</parameter>
-                    </distr>
-                </prior>
-                <prior id="FoldBeast3Di_freqsPrior.s:crimvlg_aa" name="distribution" x="@FoldBeast3Di_frequencies.s:crimvlg_aa">
-                    <distr id="FoldBeast3Di_Dirichlet.s:crimvlg_aa" spec="distribution.Dirichlet">
-                        <parameter id="FoldBeast3Di_Dirichlet_alpha.s:crimvlg_aa" spec="parameter.RealParameter" dimension="20" lower="0.0" name="alpha" upper="0.0">4.0</parameter>
                     </distr>
                 </prior>
                 <distribution id="FoldBeast3Di_GammaShapePrior.s:crimvlg_3di" spec="bmodeltest.math.distributions.BMTPrior" count="@FoldBeast3Di_hasGammaRates.s:crimvlg_3di" x="@FoldBeast3Di_gammaShape.s:crimvlg_3di">
@@ -384,22 +370,34 @@ dataType="3Di">
                         <parameter id="RealParameter.0" spec="parameter.RealParameter" estimate="false" name="mean">1.0</parameter>
                     </Exponential>
                 </distribution>
-                <distribution id="FoldBeast3Di_GammaShapePrior.s:crimvlg_aa" spec="bmodeltest.math.distributions.BMTPrior" count="@FoldBeast3Di_hasGammaRates.s:crimvlg_aa" distr="@Exponential.0" x="@FoldBeast3Di_gammaShape.s:crimvlg_aa"/>
-                <prior id="ORCRatePriorDistribution.c:crimvlg_3di" name="distribution" x="@ORCRates.c:crimvlg_3di">
-                    <LogNormal id="LogNormalDistributionModel.2" S="@ORCsigma.c:crimvlg_3di" meanInRealSpace="true" name="distr">
-                        <parameter id="RealParameter.11" spec="parameter.RealParameter" estimate="false" name="M">1.0</parameter>
-                    </LogNormal>
+                <distribution id="FoldBeast3Di_PropInvariablePrior.s:crimvlg_3di" spec="bmodeltest.math.distributions.BMTPrior" count="@FoldBeast3Di_hasInvariableSites.s:crimvlg_3di" x="@FoldBeast3Di_ProportionInvariable.s:crimvlg_3di">
+                    <Beta id="Beta.0" name="distr">
+                        <alpha id="Function$Constant.4" spec="Function$Constant" value="1.0"/>
+                        <beta id="Function$Constant.5" spec="Function$Constant" value="4.0"/>
+                    </Beta>
+                </distribution>
+                <prior id="OBAMA_freqsPrior.s:crimvlg_aa" name="distribution" x="@OBAMA_frequencies.s:crimvlg_aa">
+                    <distr id="OBMAMA_Dirichlet" spec="distribution.Dirichlet">
+                        <parameter id="RealParameter" spec="parameter.RealParameter" dimension="20" lower="0.0" name="alpha" upper="0.0">4.0 4.0 4.0 4.0 4.0 4.0 4.0 4.0 4.0 4.0 4.0 4.0 4.0 4.0 4.0 4.0 4.0 4.0 4.0 4.0</parameter>
+                    </distr>
                 </prior>
-                <prior id="ORCRatePriorDistribution.c:crimvlg_aa" name="distribution" x="@ORCRates.c:crimvlg_aa">
-                    <LogNormal id="LogNormalDistributionModel.3" S="@ORCsigma.c:crimvlg_aa" meanInRealSpace="true" name="distr">
-                        <parameter id="RealParameter.15" spec="parameter.RealParameter" estimate="false" name="M">1.0</parameter>
-                    </LogNormal>
-                </prior>
+                <distribution id="OBAMA_GammaShapePrior.s:crimvlg_aa" spec="bmodeltest.math.distributions.BMTPrior" count="@OBAMA_hasGammaRates.s:crimvlg_aa" distr="@Exponential.0" x="@OBAMA_gammaShape.s:crimvlg_aa"/>
+                <distribution id="OBAMA_PropInvariablePrior.s:crimvlg_aa" spec="bmodeltest.math.distributions.BMTPrior" count="@OBAMA_hasInvariableSites.s:crimvlg_aa" x="@OBAMA_ProportionInvariable.s:crimvlg_aa">
+                    <Beta id="Beta.1" name="distr">
+                        <alpha id="Function$Constant.6" spec="Function$Constant" value="1.0"/>
+                        <beta id="Function$Constant.7" spec="Function$Constant" value="4.0"/>
+                    </Beta>
+                </distribution>
                 <prior id="ORCsigmaPrior.c:crimvlg_3di" name="distribution" x="@ORCsigma.c:crimvlg_3di">
                     <Gamma id="Gamma.4" name="distr">
                         <parameter id="RealParameter.12" spec="parameter.RealParameter" estimate="false" name="alpha">5.0</parameter>
                         <parameter id="RealParameter.13" spec="parameter.RealParameter" estimate="false" name="beta">0.05</parameter>
                     </Gamma>
+                </prior>
+                <prior id="ORCRatePriorDistribution.c:crimvlg_3di" name="distribution" x="@ORCRates.c:crimvlg_3di">
+                    <LogNormal id="LogNormalDistributionModel.2" S="@ORCsigma.c:crimvlg_3di" meanInRealSpace="true" name="distr">
+                        <parameter id="RealParameter.11" spec="parameter.RealParameter" estimate="false" name="M">1.0</parameter>
+                    </LogNormal>
                 </prior>
                 <prior id="ORCsigmaPrior.c:crimvlg_aa" name="distribution" x="@ORCsigma.c:crimvlg_aa">
                     <Gamma id="Gamma.6" name="distr">
@@ -413,8 +411,10 @@ dataType="3Di">
                         <beta id="Function$Constant.11" spec="Function$Constant" value="100.0"/>
                     </Gamma>
                 </prior>
-                <prior id="YuleBirthRatePrior.t:crimvlg_aa" name="distribution" x="@birthRate.t:crimvlg_aa">
-                    <Uniform id="Uniform.4" name="distr" upper="Infinity"/>
+                <prior id="ORCRatePriorDistribution.c:crimvlg_aa" name="distribution" x="@ORCRates.c:crimvlg_aa">
+                    <LogNormal id="LogNormalDistributionModel.3" S="@ORCsigma.c:crimvlg_aa" meanInRealSpace="true" name="distr">
+                        <parameter id="RealParameter.15" spec="parameter.RealParameter" estimate="false" name="M">1.0</parameter>
+                    </LogNormal>
                 </prior>
             </distribution>
             <distribution id="likelihood" spec="CompoundDistribution" useThreads="true">
@@ -437,13 +437,24 @@ dataType="3Di">
                     </branchRateModel>
                 </distribution>
                 <distribution id="treeLikelihood.crimvlg_aa" spec="ThreadedTreeLikelihood" data="@crimvlg_aa" tree="@Tree.t:crimvlg_aa">
-                    <siteModel id="FoldBeast3Di.s:crimvlg_aa" spec="foldbeast.sitemodel.FoldBeastModelTestSiteModel3Di" gammaCategoryCount="4" hasGammaRates="@FoldBeast3Di_hasGammaRates.s:crimvlg_aa" hasInvariantSites="@FoldBeast3Di_hasInvariableSites.s:crimvlg_aa" mutationRate="@FoldBeast3Di_mutationRate.s:crimvlg_aa" proportionInvariant="@FoldBeast3Di_ProportionInvariable.s:crimvlg_aa" shape="@FoldBeast3Di_gammaShape.s:crimvlg_aa">
-                        <substModel id="FoldBeast3Di_substmodel.s:crimvlg_aa" spec="foldbeast.substitutionmodel.SubstitutionModelTest3Di" modelIndicator="@FoldBeast3Di_ModelIndicator.s:crimvlg_aa" useExternalFreqs="@FoldBeast3Di_useExternalFreqs.s:crimvlg_aa">
-                            <model idref="FoldBeast3Di_NullModel.0"/>
-                            <model idref="FoldBeast3Di_FoldSeek.0"/>
-                            <model idref="FoldBeast3Di_GHMatrixAF.0"/>
-                            <model idref="FoldBeast3Di_GHMatrixLLM.0"/>
-                            <frequencies id="FoldBeast3Di_freqs.s:crimvlg_aa" spec="Frequencies" frequencies="@FoldBeast3Di_frequencies.s:crimvlg_aa"/>
+                    <siteModel id="OBAMA.s:crimvlg_aa" spec="obama.sitemodel.OBAMAModelTestSiteModel" gammaCategoryCount="4" hasGammaRates="@OBAMA_hasGammaRates.s:crimvlg_aa" hasInvariantSites="@OBAMA_hasInvariableSites.s:crimvlg_aa" mutationRate="@OBAMA_mutationRate.s:crimvlg_aa" proportionInvariant="@OBAMA_ProportionInvariable.s:crimvlg_aa" shape="@OBAMA_gammaShape.s:crimvlg_aa">
+                        <substModel id="OBAMA_substmodel.s:crimvlg_aa" spec="obama.substitutionmodel.OBAMAModel" modelIndicator="@OBAMA_ModelIndicator.s:crimvlg_aa" useExternalFreqs="@OBAMA_useExternalFreqs.s:crimvlg_aa">
+                            <model id="OBAMA_Blosum62.0" spec="obama.substitutionmodel.OBAMA_Blosum62"/>
+                            <model id="OBAMA_CpREV.0" spec="obama.substitutionmodel.OBAMA_CpREV"/>
+                            <model id="OBAMA_DCMut.0" spec="obama.substitutionmodel.OBAMA_DCMut"/>
+                            <model id="OBAMA_Dayhoff.0" spec="obama.substitutionmodel.OBAMA_Dayhoff"/>
+                            <model id="OBAMA_FLU.0" spec="obama.substitutionmodel.OBAMA_FLU"/>
+                            <model id="OBAMA_HIVb.0" spec="obama.substitutionmodel.OBAMA_HIVb"/>
+                            <model id="OBAMA_HIVw.0" spec="obama.substitutionmodel.OBAMA_HIVw"/>
+                            <model id="OBAMA_JTT.0" spec="obama.substitutionmodel.OBAMA_JTT"/>
+                            <model id="OBAMA_LG.0" spec="obama.substitutionmodel.OBAMA_LG"/>
+                            <model id="OBAMA_MtArt.0" spec="obama.substitutionmodel.OBAMA_MtArt"/>
+                            <model id="OBAMA_MtREV.0" spec="obama.substitutionmodel.OBAMA_MtREV"/>
+                            <model id="OBAMA_MtMam.0" spec="obama.substitutionmodel.OBAMA_MtMam"/>
+                            <model id="OBAMA_RtREV.0" spec="obama.substitutionmodel.OBAMA_RtREV"/>
+                            <model id="OBAMA_VT.0" spec="obama.substitutionmodel.OBAMA_VT"/>
+                            <model id="OBAMA_WAG.0" spec="obama.substitutionmodel.OBAMA_WAG"/>
+                            <frequencies id="OBAMA_freqs.s:crimvlg_aa" spec="Frequencies" frequencies="@OBAMA_frequencies.s:crimvlg_aa"/>
                         </substModel>
                     </siteModel>
                     <branchRateModel id="OptimisedRelaxedClock.c:crimvlg_aa" spec="beast.base.evolution.branchratemodel.UCRelaxedClockModel" clock.rate="@ORCucldMean.c:crimvlg_aa" rates="@ORCRates.c:crimvlg_aa" tree="@Tree.t:crimvlg_aa">
@@ -475,17 +486,17 @@ dataType="3Di">
         <operator id="FoldBeast3Di_hasInvariableSitesFlipper.s:crimvlg_3di" spec="bmodeltest.evolution.operators.BMTBirthDeathOperator" count="@FoldBeast3Di_hasInvariableSites.s:crimvlg_3di" rates="@FoldBeast3Di_ProportionInvariable.s:crimvlg_3di" weight="0.1"/>
         <operator id="FoldBeast3Di_FreqsFlipOperator.s:crimvlg_3di" spec="operator.BitFlipOperator" parameter="@FoldBeast3Di_useExternalFreqs.s:crimvlg_3di" weight="0.1"/>
         <operator id="FoldBeast3Di_ModelIndicatorUniformOperator.s:crimvlg_3di" spec="operator.UniformOperator" parameter="@FoldBeast3Di_ModelIndicator.s:crimvlg_3di" weight="3.0"/>
-        <operator id="FoldBeast3Di_FrequenciesAVMNOperator.s:crimvlg_aa" spec="kernel.AdaptableVarianceMultivariateNormalOperator" beta="0.05" burnin="500" initial="1000" weight="1.0">
-            <transformations id="FoldBeast3Di_LogConstrainedSumTransform.s:crimvlg_aa" spec="operator.kernel.Transform$LogConstrainedSumTransform">
-                <f idref="FoldBeast3Di_frequencies.s:crimvlg_aa"/>
+        <operator id="OBAMA_FrequenciesAVMNOperator.s:crimvlg_aa" spec="kernel.AdaptableVarianceMultivariateNormalOperator" beta="0.05" burnin="500" initial="1000" weight="1.0">
+            <transformations id="LogConstrainedSumTransform.s:crimvlg_aa" spec="operator.kernel.Transform$LogConstrainedSumTransform">
+                <f idref="OBAMA_frequencies.s:crimvlg_aa"/>
             </transformations>
         </operator>
-        <operator id="FoldBeast3Di_gammaShapeScaler.s:crimvlg_aa" spec="bmodeltest.evolution.operators.BMTScaleOperator" count="@FoldBeast3Di_hasGammaRates.s:crimvlg_aa" parameter="@FoldBeast3Di_gammaShape.s:crimvlg_aa" scaleFactor="0.5" weight="0.5"/>
-        <operator id="FoldBeast3Di_ProportionInvariableScaler.s:crimvlg_aa" spec="bmodeltest.evolution.operators.BMTScaleOperator" count="@FoldBeast3Di_hasInvariableSites.s:crimvlg_aa" parameter="@FoldBeast3Di_ProportionInvariable.s:crimvlg_aa" scaleFactor="0.5" weight="0.5"/>
-        <operator id="FoldBeast3Di_hasGammaRatesFlipper.s:crimvlg_aa" spec="bmodeltest.evolution.operators.BMTBirthDeathOperator" count="@FoldBeast3Di_hasGammaRates.s:crimvlg_aa" rates="@FoldBeast3Di_gammaShape.s:crimvlg_aa" weight="0.1"/>
-        <operator id="FoldBeast3Di_hasInvariableSitesFlipper.s:crimvlg_aa" spec="bmodeltest.evolution.operators.BMTBirthDeathOperator" count="@FoldBeast3Di_hasInvariableSites.s:crimvlg_aa" rates="@FoldBeast3Di_ProportionInvariable.s:crimvlg_aa" weight="0.1"/>
-        <operator id="FoldBeast3Di_FreqsFlipOperator.s:crimvlg_aa" spec="operator.BitFlipOperator" parameter="@FoldBeast3Di_useExternalFreqs.s:crimvlg_aa" weight="0.1"/>
-        <operator id="FoldBeast3Di_ModelIndicatorUniformOperator.s:crimvlg_aa" spec="operator.UniformOperator" parameter="@FoldBeast3Di_ModelIndicator.s:crimvlg_aa" weight="3.0"/>
+        <operator id="OBAMA_gammaShapeScaler.s:crimvlg_aa" spec="bmodeltest.evolution.operators.BMTScaleOperator" count="@OBAMA_hasGammaRates.s:crimvlg_aa" parameter="@OBAMA_gammaShape.s:crimvlg_aa" scaleFactor="0.5" weight="0.5"/>
+        <operator id="OBAMA_ProportionInvariableScaler.s:crimvlg_aa" spec="bmodeltest.evolution.operators.BMTScaleOperator" count="@OBAMA_hasInvariableSites.s:crimvlg_aa" parameter="@OBAMA_ProportionInvariable.s:crimvlg_aa" scaleFactor="0.5" weight="0.5"/>
+        <operator id="OBAMA_hasGammaRatesFlipper.s:crimvlg_aa" spec="bmodeltest.evolution.operators.BMTBirthDeathOperator" count="@OBAMA_hasGammaRates.s:crimvlg_aa" rates="@OBAMA_gammaShape.s:crimvlg_aa" weight="0.1"/>
+        <operator id="OBAMA_hasInvariableSitesFlipper.s:crimvlg_aa" spec="bmodeltest.evolution.operators.BMTBirthDeathOperator" count="@OBAMA_hasInvariableSites.s:crimvlg_aa" rates="@OBAMA_ProportionInvariable.s:crimvlg_aa" weight="0.1"/>
+        <operator id="OBAMA_FreqsFlipOperator.s:crimvlg_aa" spec="operator.BitFlipOperator" parameter="@OBAMA_useExternalFreqs.s:crimvlg_aa" weight="0.1"/>
+        <operator id="OBAMA_ModelIndicatorUniformOperator.s:crimvlg_aa" spec="operator.UniformOperator" parameter="@OBAMA_ModelIndicator.s:crimvlg_aa" weight="3.0"/>
         <operator id="ORCAdaptableOperatorSampler_sigma.c:crimvlg_3di" spec="AdaptableOperatorSampler" weight="3.0">
             <parameter idref="ORCsigma.c:crimvlg_3di"/>
             <operator id="ORCucldStdevScaler.c:crimvlg_3di" spec="orc.consoperators.UcldScalerOperator" distr="@ORCLogNormalDistributionModel.c:crimvlg_3di" rates="@ORCRates.c:crimvlg_3di" scaleFactor="0.5" stdev="@ORCsigma.c:crimvlg_3di" weight="1.0">
@@ -581,18 +592,18 @@ dataType="3Di">
         </operator>
         <operator id="FixMeanMutationRatesOperator" spec="operator.kernel.BactrianDeltaExchangeOperator" delta="0.75" weight="2.0">
             <parameter idref="FoldBeast3Di_mutationRate.s:crimvlg_3di"/>
-            <parameter idref="FoldBeast3Di_mutationRate.s:crimvlg_aa"/>
+            <parameter idref="OBAMA_mutationRate.s:crimvlg_aa"/>
             <weightvector id="weightparameter" spec="parameter.IntegerParameter" dimension="2" estimate="false" lower="0" upper="0">152 152</weightvector>
         </operator>
         <logger id="tracelog" spec="Logger" fileName="$(filebase).log" logEvery="1000" model="@posterior" sanitiseHeaders="true" sort="smart">
             <log idref="posterior"/>
             <log idref="likelihood"/>
             <log idref="prior"/>
+            <log idref="treeLikelihood.crimvlg_3di"/>
             <log idref="treeLikelihood.crimvlg_aa"/>
             <log id="TreeHeight.t:crimvlg_aa" spec="beast.base.evolution.tree.TreeStatLogger" tree="@Tree.t:crimvlg_aa"/>
             <log idref="YuleModel.t:crimvlg_aa"/>
             <log idref="birthRate.t:crimvlg_aa"/>
-            <log idref="treeLikelihood.crimvlg_3di"/>
             <log idref="FoldBeast3Di_frequencies.s:crimvlg_3di"/>
             <log idref="FoldBeast3Di_ModelIndicator.s:crimvlg_3di"/>
             <log idref="FoldBeast3Di_gammaShape.s:crimvlg_3di"/>
@@ -602,33 +613,30 @@ dataType="3Di">
             <log id="FoldBeast3Di_ActivePropInvariable.s:crimvlg_3di" spec="bmodeltest.evolution.substitutionmodel.ActiveLogger" mask="@FoldBeast3Di_hasInvariableSites.s:crimvlg_3di" parameter="@FoldBeast3Di_ProportionInvariable.s:crimvlg_3di"/>
             <log id="FoldBeast3Di_ActiveGammaShape.s:crimvlg_3di" spec="bmodeltest.evolution.substitutionmodel.ActiveLogger" mask="@FoldBeast3Di_hasGammaRates.s:crimvlg_3di" parameter="@FoldBeast3Di_gammaShape.s:crimvlg_3di"/>
             <log idref="FoldBeast3Di_useExternalFreqs.s:crimvlg_3di"/>
-            <log idref="FoldBeast3Di_frequencies.s:crimvlg_aa"/>
-            <log idref="FoldBeast3Di_ModelIndicator.s:crimvlg_aa"/>
-            <log idref="FoldBeast3Di_gammaShape.s:crimvlg_aa"/>
-            <log idref="FoldBeast3Di_ProportionInvariable.s:crimvlg_aa"/>
-            <log idref="FoldBeast3Di_hasGammaRates.s:crimvlg_aa"/>
-            <log idref="FoldBeast3Di_hasInvariableSites.s:crimvlg_aa"/>
-            <log id="FoldBeast3Di_ActivePropInvariable.s:crimvlg_aa" spec="bmodeltest.evolution.substitutionmodel.ActiveLogger" mask="@FoldBeast3Di_hasInvariableSites.s:crimvlg_aa" parameter="@FoldBeast3Di_ProportionInvariable.s:crimvlg_aa"/>
-            <log id="FoldBeast3Di_ActiveGammaShape.s:crimvlg_aa" spec="bmodeltest.evolution.substitutionmodel.ActiveLogger" mask="@FoldBeast3Di_hasGammaRates.s:crimvlg_aa" parameter="@FoldBeast3Di_gammaShape.s:crimvlg_aa"/>
-            <log idref="FoldBeast3Di_useExternalFreqs.s:crimvlg_aa"/>
+            <log idref="OBAMA_frequencies.s:crimvlg_aa"/>
+            <log idref="OBAMA_ModelIndicator.s:crimvlg_aa"/>
+            <log idref="OBAMA_gammaShape.s:crimvlg_aa"/>
+            <log idref="OBAMA_ProportionInvariable.s:crimvlg_aa"/>
+            <log idref="OBAMA_hasGammaRates.s:crimvlg_aa"/>
+            <log idref="OBAMA_hasInvariableSites.s:crimvlg_aa"/>
+            <log id="OBAMA_ActivePropInvariable.s:crimvlg_aa" spec="bmodeltest.evolution.substitutionmodel.ActiveLogger" mask="@OBAMA_hasInvariableSites.s:crimvlg_aa" parameter="@OBAMA_ProportionInvariable.s:crimvlg_aa"/>
+            <log id="OBAMA_ActiveGammaShape.s:crimvlg_aa" spec="bmodeltest.evolution.substitutionmodel.ActiveLogger" mask="@OBAMA_hasGammaRates.s:crimvlg_aa" parameter="@OBAMA_gammaShape.s:crimvlg_aa"/>
+            <log idref="OBAMA_useExternalFreqs.s:crimvlg_aa"/>
             <log idref="ORCsigma.c:crimvlg_3di"/>
             <log id="ORCRatesStat.c:crimvlg_3di" spec="beast.base.evolution.RateStatistic" branchratemodel="@OptimisedRelaxedClock.c:crimvlg_3di" tree="@Tree.t:crimvlg_aa"/>
             <log idref="ORCucldMean.c:crimvlg_aa"/>
             <log idref="ORCsigma.c:crimvlg_aa"/>
             <log id="ORCRatesStat.c:crimvlg_aa" spec="beast.base.evolution.RateStatistic" branchratemodel="@OptimisedRelaxedClock.c:crimvlg_aa" tree="@Tree.t:crimvlg_aa"/>
+            <log idref="OBAMA_mutationRate.s:crimvlg_aa"/>
             <log idref="FoldBeast3Di_mutationRate.s:crimvlg_3di"/>
-            <log idref="FoldBeast3Di_mutationRate.s:crimvlg_aa"/>
         </logger>
         <logger id="screenlog" spec="Logger" logEvery="1000">
             <log idref="posterior"/>
             <log idref="likelihood"/>
             <log idref="prior"/>
-            <log idref="FoldBeast3Di_ModelIndicator.s:crimvlg_3di"/>
-            <log idref="FoldBeast3Di_mutationRate.s:crimvlg_3di"/>
-            <log idref="FoldBeast3Di_mutationRate.s:crimvlg_aa"/>
         </logger>
         <logger id="treelog.t:crimvlg_aa" spec="Logger" fileName="$(filebase)-$(tree).trees" logEvery="1000" mode="tree">
-            <log id="TreeWithMetaDataLogger.t:crimvlg_aa" spec="beast.base.evolution.TreeWithMetaDataLogger" branchratemodel="@OptimisedRelaxedClock.c:crimvlg_3di" tree="@Tree.t:crimvlg_aa"/>
+            <log id="TreeWithMetaDataLogger.t:crimvlg_aa" spec="beast.base.evolution.TreeWithMetaDataLogger" branchratemodel="@OptimisedRelaxedClock.c:crimvlg_aa" tree="@Tree.t:crimvlg_aa"/>
         </logger>
         <operatorschedule id="OperatorSchedule" spec="OperatorSchedule"/>
     </run>
