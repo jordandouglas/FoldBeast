@@ -32,6 +32,8 @@ This package requires BEAST 2.7 or newer. To follow this tutorial, the following
 ## Setting up a partitioned 3Di analysis in BEAST 2
 
 
+In this tutorial, we will configure a BEAST 2 analysis from an amino acid and 3Di partition of the same dataset. Both partitions will share a phylogeny, however they will have their own site and clock models.
+
 1. Launch BEAUti.
 2. Load the two `fasta` alignment files in the `examples/` folder.
 3. Select amino acid as the data type for `crimvlg_aa` and select 3Di as the datatype for `crimvlg_3di`. This alignment is an anticodon binding domain from eight aminoacyl-tRNA synthetase families.
@@ -49,7 +51,7 @@ This package requires BEAST 2.7 or newer. To follow this tutorial, the following
 
 9. Open the `Clock Model` tab and select the `Optimised Relaxed Clock` for either partition.
 10. Open the `Priors` tab and make any desired adjustments to the tree prior and other priors, as per usual.
-11. Save the XML file and run BEAST, as per usual.
+11. Save the XML file and run BEAST 2, as per usual.
 
 
 
