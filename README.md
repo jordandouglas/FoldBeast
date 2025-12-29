@@ -51,7 +51,7 @@ In this tutorial, we will configure a BEAST 2 analysis from an amino acid and 3D
 
 9. Open the `Clock Model` tab and select the `Optimised Relaxed Clock` for either partition.
 10. Open the `Priors` tab and make any desired adjustments to the tree prior and other priors, as per usual.
-11. Optional: ancestral sequences, and the number of amino acid and 3Di substitutions, can be configured with the [BeastMap](https://github.com/jordandouglas/BeastMap) package
+11. Optional: ancestral sequence reconstruction, and estimating the number of amino acid and 3Di substitutions per-lineage, can be configured with the [BeastMap](https://github.com/jordandouglas/BeastMap) package
 12. Save the XML file and run BEAST 2, as per usual.
 
 
