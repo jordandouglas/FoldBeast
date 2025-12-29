@@ -2,7 +2,7 @@
 
 FoldBeast enables structural phylogenetic inference using the 3Di structural alphabet (see review: Puente-Lelievre et al. 2025). Currently, there are three matrices available: the original Foldseek 3Di matrix (van Kempfen et al. 2023), and the GH AlphaFold and LLM matrices (Garg and Hochberg 2025). This package enables inference in all three matrices, as well as model averaging.
 
-
+If you find this package helpful for your research, please cite our preprint where we apply this method to aminoacyl-tRNA synthetases (Douglas & Bromham 2025).
 
 ## Installation
 
@@ -51,11 +51,14 @@ In this tutorial, we will configure a BEAST 2 analysis from an amino acid and 3D
 
 9. Open the `Clock Model` tab and select the `Optimised Relaxed Clock` for either partition.
 10. Open the `Priors` tab and make any desired adjustments to the tree prior and other priors, as per usual.
-11. Save the XML file and run BEAST 2, as per usual.
+11. Optional: ancestral sequences, and the number of amino acid and 3Di substitutions, can be configured with the [BeastMap](https://github.com/jordandouglas/BeastMap) package
+12. Save the XML file and run BEAST 2, as per usual.
 
 
 
 ## References
+
+Douglas, J., & Bromham, L. (2025). Reconstructing substitution histories on phylogenies, with accuracy, precision, and coverage. bioRxiv, 2025-12. https://doi.org/10.64898/2025.12.21.695861
 
 Puente-Lelievre, C., Malik, A., & Douglas, J. (2025). Protein Structural Phylogenetics. Genome Biology and Evolution, 17(8), evaf139.
 
