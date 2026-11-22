@@ -2,21 +2,15 @@
 
 FoldBeast enables structural phylogenetic inference using the 3Di structural alphabet (see review: Puente-Lelievre et al. 2025). Currently, there are three matrices available: the original Foldseek 3Di matrix (van Kempfen et al. 2023), and the GH AlphaFold and LLM matrices (Garg and Hochberg 2025). This package enables inference in all three matrices, as well as model averaging.
 
-If you find this package helpful for your research, please cite our preprint where we apply this method to aminoacyl-tRNA synthetases (Douglas & Bromham 2025).
+If you find this package helpful for your research, please cite our preprint where we apply this method to aminoacyl-tRNA synthetases (Douglas & Bromham 2026).
 
 ## Installation
 
-FoldBeast is currently in pre-release. 
 
 1.  Launch BEAUti
 2.  Click on `File -> Manage Packages`
 3.  Install FoldBeast. If FoldBeast is not in the list of packages, you may need to add an extra package repository as follows:
 
--   Click the packager repositories button. A dialog pops up.
--   Click the Add URL button. A dialog is shown where you can enter  [https://raw.githubusercontent.com/CompEvol/CBAN/master/packages-extra-2.7.xml](https://raw.githubusercontent.com/CompEvol/CBAN/master/packages-extra-2.7.xml)
--   click the OK button. There should be an extra entry in the list.
--   click Done
--   After a short delay, FoldBeast should appear in the list of packages.
 
 
 ## Dependencies
@@ -58,7 +52,7 @@ In this tutorial, we will configure a BEAST 2 analysis from an amino acid and 3D
 
 ## References
 
-Douglas, J., & Bromham, L. (2025). Reconstructing substitution histories on phylogenies, with accuracy, precision, and coverage. bioRxiv, 2025-12. https://doi.org/10.64898/2025.12.21.695861
+Douglas, J., & Bromham, L. (2026). Reconstructing substitution histories on phylogenies, with accuracy, precision, and coverage, Systematic Biology, 2026;, syag081. https://doi.org/10.1093/sysbio/syag081
 
 Puente-Lelievre, C., Malik, A., & Douglas, J. (2025). Protein Structural Phylogenetics. Genome Biology and Evolution, 17(8), evaf139.
 
