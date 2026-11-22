@@ -2,7 +2,7 @@
 
 FoldBeast enables structural phylogenetic inference using the 3Di structural alphabet (see review: Puente-Lelievre et al. 2025). Currently, there are three matrices available: the original Foldseek 3Di matrix (van Kempfen et al. 2023), and the GH AlphaFold and LLM matrices (Garg and Hochberg 2025). This package enables inference in all three matrices, as well as model averaging.
 
-If you find this package helpful for your research, please cite our preprint where we apply this method to aminoacyl-tRNA synthetases (Douglas & Bromham 2026).
+If you find this package helpful for your research, please cite our manuscript where we apply this method to aminoacyl-tRNA synthetases (Douglas & Bromham 2026).
 
 ## Installation
 
