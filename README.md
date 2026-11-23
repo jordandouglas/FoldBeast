@@ -9,7 +9,7 @@ If you find this package helpful for your research, please cite our manuscript w
 
 1.  Launch BEAUti
 2.  Click on `File -> Manage Packages`
-3.  Install FoldBeast. If FoldBeast is not in the list of packages, you may need to add an extra package repository as follows:
+3.  Install FoldBeast
 
 
 
